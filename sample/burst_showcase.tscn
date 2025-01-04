@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgsh73nx00tud"]
+
+[ext_resource type="Script" path="res://base/turret.gd" id="1_e4wml"]
+[ext_resource type="Script" path="res://sample/burst_showcase.gd" id="1_fyhfq"]
+[ext_resource type="Script" path="res://base/burst.gd" id="2_4ec4l"]
+
+[sub_resource type="Resource" id="Resource_akssy"]
+script = ExtResource("2_4ec4l")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 45.0
+bullets_per_shot = 3
+shots_in_burst = 2
+time_between_shots = 0.1
+time_between_bursts = 1.1
+burst_count_limit = -1
+
+[sub_resource type="Resource" id="Resource_pjkf4"]
+script = ExtResource("2_4ec4l")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 45.0
+bullets_per_shot = 2
+shots_in_burst = 3
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = -1
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_fyhfq")
+
+[node name="3Bullets2Shots" type="Node2D" parent="."]
+position = Vector2(543, 169)
+script = ExtResource("1_e4wml")
+burst_data = SubResource("Resource_akssy")
+
+[node name="2Bullets3Shots" type="Node2D" parent="."]
+position = Vector2(544, 417)
+script = ExtResource("1_e4wml")
+burst_data = SubResource("Resource_pjkf4")
