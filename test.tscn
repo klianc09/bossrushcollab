@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdyxuh1334c7a"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
+[ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
+[ext_resource type="PackedScene" uid="uid://bl6sm6ilarwmw" path="res://boss/example/enemy_cloud.tscn" id="5_16l7w"]
+[ext_resource type="Script" path="res://hud.gd" id="5_yj37d"]
+[ext_resource type="PackedScene" uid="uid://dfvwu0wukba6w" path="res://boss/example/example_boss_1.tscn" id="6_mstoc"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_de0hb")
+bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w")])
+
+[node name="player" parent="." instance=ExtResource("2_1jh4n")]
+
+[node name="hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_yj37d")
+
+[node name="BossHealthBar" type="ProgressBar" parent="hud"]
+layout_mode = 0
+offset_right = 687.0
+offset_bottom = 27.0
+value = 100.0
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="hud"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 618.0
+offset_right = 111.0
+offset_bottom = 645.0
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="ChargeBar" type="ProgressBar" parent="hud"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 585.0
+offset_right = 109.0
+offset_bottom = 612.0
+
+[node name="ApproachingLabel" type="Label" parent="hud"]
+visible = false
+layout_mode = 0
+offset_left = 463.0
+offset_top = 160.0
+offset_right = 503.0
+offset_bottom = 183.0
+text = "Boss Approaching:"
+
+[node name="BossNameLabel" type="Label" parent="hud"]
+visible = false
+layout_mode = 0
+offset_left = 447.0
+offset_top = 195.0
+offset_right = 621.0
+offset_bottom = 218.0
+text = "<insert name here>"
+horizontal_alignment = 1
+
+[node name="SuccessLabel" type="Label" parent="hud"]
+visible = false
+layout_mode = 0
+offset_left = 449.0
+offset_top = 368.0
+offset_right = 631.0
+offset_bottom = 391.0
+text = "You defeated the BOSS!"
+
+[node name="UltimateSuccessLabel" type="Label" parent="hud"]
+visible = false
+layout_mode = 0
+offset_left = 411.0
+offset_top = 420.0
+offset_right = 682.0
+offset_bottom = 443.0
+text = "You defeated ALL bosses, good job!"
+
+[node name="NextBossTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="charge_change" from="player" to="hud" method="_on_player_charge_change"]
+[connection signal="health_change" from="player" to="hud" method="_on_player_health_change"]
+[connection signal="timeout" from="NextBossTimer" to="." method="_on_next_boss_timer_timeout"]

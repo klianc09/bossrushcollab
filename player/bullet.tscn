@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://mojmo8rgwryg"]
+
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="1_3kebh"]
+[ext_resource type="Script" path="res://base/bullet.gd" id="2_fu2gb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcqhh"]
+
+[node name="bullet" type="Area2D" groups=["p_bullet"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_fu2gb")
+enemy_team = false
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.117647, 1, 1)
+scale = Vector2(1, 0.2)
+texture = ExtResource("1_3kebh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bcqhh")

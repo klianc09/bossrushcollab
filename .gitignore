@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# export folders
+/export/
+/secret/
+
+# System/tool-specific ignores
+.directory
+*~
+.DS_Store

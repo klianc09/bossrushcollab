@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://1c6hgwr65toa"]
+
+[ext_resource type="Texture2D" uid="uid://b7e3tc0w55s4s" path="res://player/gfx/flash.png" id="1_nc7p5"]
+[ext_resource type="Script" path="res://base/particle.gd" id="2_ddj2t"]
+
+[node name="particle" type="Sprite2D"]
+z_index = 1
+texture = ExtResource("1_nc7p5")
+script = ExtResource("2_ddj2t")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c15srej0y6td5"]
+
+[ext_resource type="Script" path="res://boss/example/cloud_enemy.gd" id="1_l48we"]
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_tct1g"]
+[ext_resource type="Script" path="res://base/turret.gd" id="3_a1ysi"]
+[ext_resource type="Script" path="res://base/burst.gd" id="4_jedga"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j6egh"]
+radius = 27.1662
+
+[sub_resource type="Resource" id="Resource_6q016"]
+script = ExtResource("4_jedga")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 250.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[node name="enemy" type="Area2D" groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_l48we")
+destroyedOnContact = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_tct1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j6egh")
+
+[node name="DeathBullet" type="Node2D" parent="."]
+script = ExtResource("3_a1ysi")
+active = false
+burst_data = SubResource("Resource_6q016")
+player_aimed = true

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bbbs3083ky3ym"]
+
+[ext_resource type="Script" path="res://base/burst.gd" id="1_ipf3e"]
+
+[resource]
+script = ExtResource("1_ipf3e")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 1.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 0
+shots_in_burst = 0
+time_between_shots = 0.0
+time_between_bursts = 0.0
+burst_count_limit = -1

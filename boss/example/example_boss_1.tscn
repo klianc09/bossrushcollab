@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfvwu0wukba6w"]
+
+[ext_resource type="Script" path="res://boss/example/example_boss_1.gd" id="1_vplxl"]
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_s7uk1"]
+[ext_resource type="Script" path="res://base/enemy.gd" id="3_h7kon"]
+[ext_resource type="Script" path="res://base/turret.gd" id="4_806g1"]
+[ext_resource type="Resource" uid="uid://bnbyluvtv2bds" path="res://base/burst_example.tres" id="5_l2mtf"]
+[ext_resource type="Script" path="res://base/burst.gd" id="6_bwexw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn6ls"]
+size = Vector2(56, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pk2c"]
+size = Vector2(125, 124)
+
+[sub_resource type="Resource" id="Resource_url4b"]
+script = ExtResource("6_bwexw")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 1.0
+shot_inaccuracy = 5.0
+full_shot_spread = 90.0
+bullets_per_shot = 5
+shots_in_burst = 3
+time_between_shots = 0.2
+time_between_bursts = 1.0
+burst_count_limit = -1
+
+[node name="ExampleBoss1" type="Area2D" groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_vplxl")
+boss_name = "Perfectly Boring Example Boss"
+maxhp = 100.0
+boss = true
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+position = Vector2(-1, -104)
+texture = ExtResource("2_s7uk1")
+
+[node name="Sprite3" type="Sprite2D" parent="."]
+position = Vector2(-1, 104)
+texture = ExtResource("2_s7uk1")
+
+[node name="CritArea" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-43, 1)
+collision_layer = 4
+script = ExtResource("3_h7kon")
+multipart = true
+damageMultiplier = 2.0
+
+[node name="Sprite" type="Sprite2D" parent="CritArea"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.601563, 0.59375)
+texture = ExtResource("2_s7uk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CritArea"]
+shape = SubResource("RectangleShape2D_yn6ls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -107)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 103)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="Turret1" type="Node2D" parent="."]
+position = Vector2(1, -106)
+script = ExtResource("4_806g1")
+active = false
+burst_data = ExtResource("5_l2mtf")
+
+[node name="Turret2" type="Node2D" parent="."]
+position = Vector2(-3, 104)
+script = ExtResource("4_806g1")
+active = false
+burst_data = ExtResource("5_l2mtf")
+
+[node name="MainTurret" type="Node2D" parent="."]
+position = Vector2(-44, 0)
+script = ExtResource("4_806g1")
+active = false
+burst_data = SubResource("Resource_url4b")
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="OutroTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+[connection signal="timeout" from="OutroTimer" to="." method="_on_outro_timer_timeout"]

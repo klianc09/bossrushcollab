@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bnbyluvtv2bds"]
+
+[ext_resource type="Script" path="res://base/burst.gd" id="1_qh7yl"]
+
+[resource]
+script = ExtResource("1_qh7yl")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 1.0
+shot_inaccuracy = 5.0
+full_shot_spread = 5.0
+bullets_per_shot = 3
+shots_in_burst = 5
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = -1
