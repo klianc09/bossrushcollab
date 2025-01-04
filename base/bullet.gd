@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 			if target == null:
 				homingDelay = 1
 		else:
-			var targetRotation = (target.position - position).angle()
+			var targetRotation = (target.global_position - position).angle()
 			rotation = rotate_toward(rotation, targetRotation, rotationSpeed * delta)
 	var forward = Vector2(1, 0).rotated(rotation)
 	bulletSpeed += speedup * delta

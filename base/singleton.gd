@@ -37,6 +37,8 @@ func bossSpawned(boss: Enemy):
 	emit_signal("boss_spawned", bossNode)
 
 func damageBoss(damageAmount: int):
+	if not is_instance_valid(bossNode):
+		return
 	bossNode.hp -= damageAmount
 	if bossNode.hp < 0:
 		bossNode.hp = 0

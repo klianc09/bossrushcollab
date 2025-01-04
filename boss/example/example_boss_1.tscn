@@ -31,13 +31,14 @@ collision_layer = 4
 script = ExtResource("1_vplxl")
 boss_name = "Perfectly Boring Example Boss"
 maxhp = 100.0
+validTarget = false
 boss = true
 
-[node name="Sprite2" type="Sprite2D" parent="."]
+[node name="Sprite2" type="Sprite2D" parent="." groups=["enemy"]]
 position = Vector2(-1, -104)
 texture = ExtResource("2_s7uk1")
 
-[node name="Sprite3" type="Sprite2D" parent="."]
+[node name="Sprite3" type="Sprite2D" parent="." groups=["enemy"]]
 position = Vector2(-1, 104)
 texture = ExtResource("2_s7uk1")
 
