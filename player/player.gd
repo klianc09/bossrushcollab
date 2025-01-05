@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 	var spreadM2 = remap(spreadValue, -1, 1, maxMissileSubSpread, minMissileSubSpread)
 	
 	var currentMoveSpeed = moveSpeed
-	if Input.is_action_pressed("action_focus"):
+	if !Input.is_action_pressed("action_focus"):
 		currentMoveSpeed = focusSpeed
 		chargeTimer += delta * chargeRate
 		chargeDischarge = chargeConversationRate # guaranteed missiles at start of barrage
@@ -97,6 +97,11 @@ func _process(delta: float) -> void:
 				alternate = -alternate
 			
 	position += input_vector * delta * currentMoveSpeed
+	#clamp to screen
+	#magic numbers ahead!
+	position.x = clamp(position.x,0,1160)
+	position.y = clamp(position.y,0,640)
+	
 
 func spawnBullet(position: Vector2, velocity: Vector2):
 	var bulletScene : PackedScene = load("res://player/bullet.tscn")

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Singleton="*res://base/singleton.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/movie_file="D:/Dev/2024/shmupmeup/trailer.avi"
