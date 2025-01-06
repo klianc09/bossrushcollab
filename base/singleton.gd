@@ -3,12 +3,16 @@ extends Node
 var mainNode : Node
 var particlePool = {}
 
+var viewportSize : Vector2
 var bossNode : Enemy
 
 signal boss_hp_changed(newHealth: int)
 signal boss_defeated()
 signal boss_spawned(bossNode: Enemy)
 signal great_success()
+
+func _enter_tree() -> void:
+	viewportSize = get_viewport().get_visible_rect().size
 
 func resetPools() -> void:
 	particlePool = {}

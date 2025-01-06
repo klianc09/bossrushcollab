@@ -1,6 +1,8 @@
 extends Enemy
 
 var movement = 100
+var horizontalPosition = Singleton.viewportSize.x - 100
+var verticalEdgeToBorder = 100
 
 enum Phase {
 	INTRO, PHASE1, TRANSITION, PHASE2, OUTRO
@@ -12,11 +14,8 @@ func _ready() -> void:
 	super() # very important to call the base function (from the enemy script)
 	invincible = true
 	$CritArea.invincible = true
-	# hardcoded position values not so nice, should use viewport size, 
-	#  because viewport size might still change eventually
-	#  but it will do for now
-	position.x = 1200
-	position.y = 300
+	position.x = Singleton.viewportSize.x + 500
+	position.y = Singleton.viewportSize.y / 2
 
 func onHealthFullyLost() -> void:
 	if phase == Phase.PHASE1:
@@ -45,7 +44,7 @@ func _process(delta: float) -> void:
 	
 	if phase == Phase.INTRO:
 		position.x -= delta * 200
-		if position.x < 950:
+		if position.x < horizontalPosition:
 			phase = Phase.PHASE1
 			invincible = false
 			$CritArea.invincible = false
@@ -53,11 +52,11 @@ func _process(delta: float) -> void:
 			$Turret2.active = true
 	elif phase == Phase.PHASE1 or phase == Phase.PHASE2:
 		position.y += delta * movement
-		if position.y < 100:
-			position.y = 100
+		if position.y < verticalEdgeToBorder:
+			position.y = verticalEdgeToBorder
 			movement *= -1
-		elif position.y > 500:
-			position.y = 500
+		elif position.y > Singleton.viewportSize.y - verticalEdgeToBorder:
+			position.y = Singleton.viewportSize.y - verticalEdgeToBorder
 			movement *= -1
 
 func _on_transition_timer_timeout() -> void:

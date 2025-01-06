@@ -98,9 +98,7 @@ func _process(delta: float) -> void:
 			
 	position += input_vector * delta * currentMoveSpeed
 	#clamp to screen
-	#magic numbers ahead!
-	position.x = clamp(position.x,0,1160)
-	position.y = clamp(position.y,0,640)
+	position = position.clamp(Vector2.ZERO, Singleton.viewportSize)
 	
 
 func spawnBullet(position: Vector2, velocity: Vector2):

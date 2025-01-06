@@ -12,8 +12,8 @@ script = ExtResource("1_de0hb")
 bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w")])
 
 [node name="BgTowerThing" type="Sprite2D" parent="."]
-position = Vector2(581.587, 320.5)
-scale = Vector2(1.39178, 1.39177)
+position = Vector2(480, 270)
+scale = Vector2(1.26242, 1.26242)
 texture = ExtResource("4_122uy")
 
 [node name="player" parent="." instance=ExtResource("2_1jh4n")]
@@ -33,20 +33,20 @@ value = 100.0
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="hud"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 618.0
-offset_right = 111.0
-offset_bottom = 645.0
+offset_left = 15.0
+offset_top = 498.0
+offset_right = 122.0
+offset_bottom = 525.0
 max_value = 3.0
 value = 3.0
 show_percentage = false
 
 [node name="ChargeBar" type="ProgressBar" parent="hud"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 585.0
-offset_right = 109.0
-offset_bottom = 612.0
+offset_left = 20.0
+offset_top = 465.0
+offset_right = 120.0
+offset_bottom = 492.0
 
 [node name="ApproachingLabel" type="Label" parent="hud"]
 visible = false

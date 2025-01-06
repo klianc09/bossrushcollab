@@ -2,13 +2,15 @@ extends Enemy
 
 func _on_timer_timeout() -> void:
 	var enemy = load("res://boss/example/cloud_enemy.tscn").instantiate()
-	enemy.position = Vector2(randf_range(900, 1100), randf_range(0, 600))
+	var screenWidth = Singleton.viewportSize.x
+	enemy.position = Vector2(randf_range(screenWidth - 200, screenWidth), randf_range(0, Singleton.viewportSize.y))
 	Singleton.mainNode.add_child(enemy)
 
 
 func _on_timer_2_timeout() -> void:
 	var enemy = load("res://boss/example/cloud_enemy.tscn").instantiate()
-	enemy.position = Vector2(randf_range(900, 1100), randf_range(0, 600))
+	var screenWidth = Singleton.viewportSize.x
+	enemy.position = Vector2(randf_range(screenWidth - 200, screenWidth), randf_range(0, Singleton.viewportSize.y))
 	enemy.maxhp = 8
 	enemy.scale = Vector2(4, 4)
 	Singleton.mainNode.add_child(enemy)
