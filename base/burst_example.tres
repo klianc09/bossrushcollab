@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bnbyluvtv2bds"]
+[gd_resource type="Resource" script_class="BulletBurst" load_steps=2 format=3 uid="uid://bnbyluvtv2bds"]
 
 [ext_resource type="Script" path="res://base/burst.gd" id="1_qh7yl"]
 

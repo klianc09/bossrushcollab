@@ -1,38 +1,23 @@
 class_name BulletBurst
 extends Resource
 
-@export var bullet_type: String = "res://base/enemy_bullet.tscn"
+## The scene file that represents the bullet to spawn
+@export_file("*.tscn") var bullet_type: String = "res://base/enemy_bullet.tscn"
+## The default speed the bullet spawns with
 @export var bullet_speed: float = 100
-@export var bullet_inaccuracy: float = 0
-@export var shot_inaccuracy: float = 0
-@export var full_shot_spread: float = 0
+## The random angle added to any individual bullet's direction
+@export_range(0, 360, 0.1, "suffix:°") var bullet_inaccuracy: float = 0
+## The random angle added to a full shot (if there are multiple bullets in a shot, this will keep them evenly spaced, but their general direction to change)
+@export_range(0, 360, 0.1, "suffix:°") var shot_inaccuracy: float = 0
+## The full angle range across which bullets are evenly spaced
+@export_range(0, 360, 0.1, "suffix:°") var full_shot_spread: float = 0
+## The number of bullets per shot (spawn at the same time)
 @export var bullets_per_shot: int = 1
+## The number of shots in a burst (spawn with a delay)
 @export var shots_in_burst: int = 1
+## The time between shots [seconds]
 @export var time_between_shots: float = 0.1
+## The time between bursts [seconds]
 @export var time_between_bursts: float = 1
+## The number of bursts this will shoot before stopping (keep at -1 for no limit)
 @export var burst_count_limit: int = -1
-
-# Make sure that every parameter has a default value.
-# Otherwise, there will be problems with creating and editing
-# your resource via the inspector.
-#func _init(bullet_type = "res://base/enemy_bullet.tscn", \
-	#bullet_speed = 100, \
-	#bullet_inaccuracy = 5, \
-	#shot_inaccuracy = 30, \
-	#full_shot_spread = 30, \
-	#bullets_per_shot = 2, \
-	#shots_in_burst = 3, \
-	#time_between_shots = 0.1, \
-	#time_between_bursts = 1, \
-	#burst_count_limit = -1, \
-	#):
-	#self.bullet_type = bullet_type
-	#self.bullet_speed = bullet_speed
-	#self.bullet_inaccuracy = bullet_inaccuracy
-	#self.shot_inaccuracy = shot_inaccuracy
-	#self.full_shot_spread = full_shot_spread
-	#self.bullets_per_shot = bullets_per_shot
-	#self.shots_in_burst = shots_in_burst
-	#self.time_between_shots = time_between_shots
-	#self.time_between_bursts = time_between_bursts
-	#self.burst_count_limit = burst_count_limit
