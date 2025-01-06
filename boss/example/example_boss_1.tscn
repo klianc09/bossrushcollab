@@ -83,6 +83,10 @@ script = ExtResource("4_806g1")
 active = false
 burst_data = SubResource("Resource_url4b")
 
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="TransitionTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -91,5 +95,6 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
 [connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
 [connection signal="timeout" from="OutroTimer" to="." method="_on_outro_timer_timeout"]

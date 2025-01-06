@@ -1,6 +1,7 @@
 extends Node
 
 var mainNode : Node
+var camera : MainCamera
 var particlePool = {}
 
 var viewportSize : Vector2
@@ -57,3 +58,12 @@ func healBoss(healAmount: int):
 func bossFightOver():
 	emit_signal("boss_defeated")
 	#TODO: some transition / outro whatever might happen here
+
+func screenshake(amount: float):
+	camera.shake(amount)
+
+func maintainScreenshake(amount: float):
+	camera.maintainShake(amount)
+
+func screenDirectionalKnockback(push: Vector2):
+	camera.directionalPush(push)

@@ -5,7 +5,7 @@ var horizontalPosition = Singleton.viewportSize.x - 100
 var verticalEdgeToBorder = 100
 
 enum Phase {
-	INTRO, PHASE1, TRANSITION, PHASE2, OUTRO
+	INTRO, PAUSE, PHASE1, TRANSITION, PHASE2, OUTRO
 }
 
 var phase = Phase.INTRO
@@ -21,6 +21,7 @@ func onHealthFullyLost() -> void:
 	if phase == Phase.PHASE1:
 		phase = Phase.TRANSITION
 		hp = maxhp
+		Singleton.screenDirectionalKnockback(Vector2(-20, 0))
 		$Turret1.active = false
 		$Turret2.active = false
 		var tween = get_tree().create_tween()
@@ -45,11 +46,9 @@ func _process(delta: float) -> void:
 	if phase == Phase.INTRO:
 		position.x -= delta * 200
 		if position.x < horizontalPosition:
-			phase = Phase.PHASE1
-			invincible = false
-			$CritArea.invincible = false
-			$Turret1.active = true
-			$Turret2.active = true
+			phase = Phase.PAUSE
+			$PauseTimer.start()
+			Singleton.screenDirectionalKnockback(Vector2(-20, 0))
 	elif phase == Phase.PHASE1 or phase == Phase.PHASE2:
 		position.y += delta * movement
 		if position.y < verticalEdgeToBorder:
@@ -58,11 +57,22 @@ func _process(delta: float) -> void:
 		elif position.y > Singleton.viewportSize.y - verticalEdgeToBorder:
 			position.y = Singleton.viewportSize.y - verticalEdgeToBorder
 			movement *= -1
+	elif phase == Phase.OUTRO:
+		Singleton.maintainScreenshake(3)
+
+func _on_pause_timer_timeout() -> void:
+	phase = Phase.PHASE1
+	Singleton.screenDirectionalKnockback(Vector2(20, 0))
+	invincible = false
+	$CritArea.invincible = false
+	$Turret1.active = true
+	$Turret2.active = true
 
 func _on_transition_timer_timeout() -> void:
 	phase = Phase.PHASE2
 	movement = 200
 	$MainTurret.active = true
+	Singleton.screenDirectionalKnockback(Vector2(20, 0))
 
 func _on_outro_timer_timeout() -> void:
 	Singleton.bossFightOver()
