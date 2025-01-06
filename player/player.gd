@@ -31,7 +31,6 @@ var spreadLerpAlpha = 3
 var alternate = 1
 var bulletSpawnOffset = 50
 
-@export var analogStickDeadzone = 0.09
 @export var damageMultiplier = 1
 
 signal health_change(node: Player)
@@ -42,16 +41,11 @@ func _ready() -> void:
 	health_change.emit(self)
 	charge_change.emit(self)
 
-func get_axis_with_deadzone(upper, lower, deadzone):
-	return max(0, remap(Input.get_action_raw_strength(upper), deadzone, 1, 0, 1)) - max(0, remap(Input.get_action_raw_strength(lower), deadzone, 1, 0, 1))
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
 		Singleton.resetPools()
 		get_tree().reload_current_scene()
-	#var input_x = get_axis_with_deadzone("ui_right", "ui_left", analogStickDeadzone)
-	#var input_y = get_axis_with_deadzone("ui_down", "ui_up", analogStickDeadzone)
 	var input_x = Input.get_axis("ui_left", "ui_right")
 	var input_y = Input.get_axis("ui_up", "ui_down")
 	var input_vector = Vector2(input_x, input_y)
