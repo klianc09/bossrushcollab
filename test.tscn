@@ -86,6 +86,16 @@ offset_right = 631.0
 offset_bottom = 391.0
 text = "You defeated the BOSS!"
 
+[node name="DeathLabel" type="Label" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_left = 453.0
+offset_top = 310.0
+offset_right = 635.0
+offset_bottom = 359.0
+text = "You were defeated!
+Better luck next time"
+
 [node name="UltimateSuccessLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
 layout_mode = 0

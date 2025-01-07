@@ -45,3 +45,5 @@ func _on_player_charge_change(node: Player) -> void:
 func _on_player_health_change(node: Player) -> void:
 	$PlayerHealthBar.max_value = node.maxHealth
 	$PlayerHealthBar.value = node.health
+	if node.health <= 0:
+		$DeathLabel.visible = true
