@@ -28,7 +28,6 @@ func _ready() -> void:
 	# automatically hook up signals
 	connect("area_entered", _on_area_entered)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	homingDelay -= delta
 	if homing and homingDelay <= 0:

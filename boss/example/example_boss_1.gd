@@ -39,7 +39,6 @@ func onHealthFullyLost() -> void:
 		$OutroTimer.start()
 
 
-# Called every frame. 'delta' is the elapsed time in seconds since the previous frame.
 func _process(delta: float) -> void:
 	super(delta) # very important to call the base function (from the enemy script)
 	

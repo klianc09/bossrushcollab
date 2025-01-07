@@ -7,7 +7,7 @@ var particlePool = {}
 var viewportSize : Vector2
 var bossNode : Enemy
 
-signal boss_hp_changed(newHealth: int)
+signal boss_hp_changed(newHealth: float)
 signal boss_defeated()
 signal boss_spawned(bossNode: Enemy)
 signal great_success()
@@ -41,7 +41,7 @@ func bossSpawned(boss: Enemy):
 	bossNode = boss
 	emit_signal("boss_spawned", bossNode)
 
-func damageBoss(damageAmount: int):
+func damageBoss(damageAmount: float):
 	if not is_instance_valid(bossNode):
 		return
 	bossNode.hp -= damageAmount

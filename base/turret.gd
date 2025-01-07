@@ -18,7 +18,6 @@ func reset() -> void:
 	shot_timer = 0
 	burst_timer = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if active:
 		if shot_count < burst_data.shots_in_burst:
@@ -50,7 +49,7 @@ func shoot() -> void:
 	#TODO: handle 360 degrees special case?
 	if burst_data.bullets_per_shot > 1:
 		spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
-	var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
+	#var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
 	for i in range(burst_data.bullets_per_shot):
 		var bullet = bulletScene.instantiate()
 		var actual_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))

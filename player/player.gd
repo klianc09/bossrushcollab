@@ -36,12 +36,10 @@ var bulletSpawnOffset = 50
 signal health_change(node: Player)
 signal charge_change(node: Player)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health_change.emit(self)
 	charge_change.emit(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
 		Singleton.resetPools()
@@ -95,10 +93,10 @@ func _process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, Singleton.viewportSize)
 	
 
-func spawnBullet(position: Vector2, velocity: Vector2):
+func spawnBullet(position_: Vector2, velocity: Vector2):
 	var bulletScene : PackedScene = load("res://player/bullet.tscn")
 	var bullet = bulletScene.instantiate()
-	bullet.position = position + velocity.normalized() * bulletSpawnOffset
+	bullet.position = position_ + velocity.normalized() * bulletSpawnOffset
 	bullet.bulletSpeed = velocity.length()
 	bullet.rotation = velocity.angle()
 	bullet.damage *= damageMultiplier
@@ -107,10 +105,10 @@ func spawnBullet(position: Vector2, velocity: Vector2):
 	particle.position = bullet.position
 	return bullet
 
-func spawnMissile(position: Vector2, velocity: Vector2):
+func spawnMissile(position_: Vector2, velocity: Vector2):
 	var bulletScene : PackedScene = load("res://player/missile.tscn")
 	var missile = bulletScene.instantiate()
-	missile.position = position + velocity.normalized() * bulletSpawnOffset
+	missile.position = position_ + velocity.normalized() * bulletSpawnOffset
 	missile.bulletSpeed = velocity.length()
 	missile.rotation = velocity.angle()
 	missile.damage *= damageMultiplier

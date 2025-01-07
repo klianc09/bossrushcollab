@@ -1,6 +1,6 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	Singleton.connect("boss_hp_changed", _on_boss_hp_changed)
 	Singleton.connect("boss_defeated", _on_boss_defeated)

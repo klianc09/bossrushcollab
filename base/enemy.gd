@@ -8,7 +8,7 @@ var hp : float = 1
 @export var boss : bool = false
 @export var multipart : bool = false ## TODO figure out how to do multipart bosses as well as weakspots in a flexible and simple way
 @export var damageMultiplier : float = 1
-@export var contactDamage : float = 1
+@export var contactDamage : int = 1
 @export var destroyedOnContact : bool = false
 @export var invincible : bool = false
 
@@ -20,7 +20,6 @@ func _ready() -> void:
 	if boss:
 		Singleton.bossSpawned(self)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	flashTimer -= delta
 	if flashTimer < 0:
@@ -34,13 +33,13 @@ func onHealthFullyLost() -> void:
 		Singleton.bossFightOver()
 	queue_free()
 
-func damage(damage: float) -> void:
+func damage(amount: float) -> void:
 	if invincible:
 		return
 	if (boss or multipart):
-		Singleton.damageBoss(damage * damageMultiplier)
+		Singleton.damageBoss(amount * damageMultiplier)
 	else:
-		hp -= damage * damageMultiplier
+		hp -= amount * damageMultiplier
 	modulate = Color.WHITE * 3
 	flashTimer = flashDuration
 
