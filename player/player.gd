@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		get_tree().reload_current_scene()
 	var input_x = Input.get_axis("ui_left", "ui_right")
 	var input_y = Input.get_axis("ui_up", "ui_down")
-	var input_vector = Vector2(input_x, input_y)
+	var input_vector = Vector2(input_x, input_y).normalized()
 	
 	# spreadValue = lerpf(spreadValue, input_x, spreadLerpAlpha)
 	spreadValue = move_toward(spreadValue, input_x, spreadLerpAlpha * delta)
