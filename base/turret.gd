@@ -49,10 +49,10 @@ func shoot() -> void:
 	#TODO: handle 360 degrees special case?
 	if burst_data.bullets_per_shot > 1:
 		spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
-	#var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
+	var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
 	for i in range(burst_data.bullets_per_shot):
 		var bullet = bulletScene.instantiate()
-		var actual_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))
+		var actual_direction = shot_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))
 		bullet.position = global_position + actual_direction.normalized() * bullet_spawn_offset
 		bullet.bulletSpeed = burst_data.bullet_speed
 		bullet.rotation = actual_direction.angle()
