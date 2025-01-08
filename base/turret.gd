@@ -46,9 +46,12 @@ func shoot() -> void:
 	var bulletScene : PackedScene = load(burst_data.bullet_type)
 	var spreadOffset = -burst_data.full_shot_spread / 2
 	var spreadStep = 0
-	#TODO: handle 360 degrees special case?
 	if burst_data.bullets_per_shot > 1:
-		spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
+		if burst_data.full_shot_spread == 360:
+			# if spread is 360 degrees, make sure the first and final bullet don't go in the identical direction
+			spreadStep = burst_data.full_shot_spread / burst_data.bullets_per_shot
+		else:
+			spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
 	var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
 	for i in range(burst_data.bullets_per_shot):
 		var bullet = bulletScene.instantiate()
