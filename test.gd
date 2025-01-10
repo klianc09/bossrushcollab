@@ -1,6 +1,8 @@
 extends Node2D
 
-@export var bosses: Array[PackedScene] 
+## List of all bosses. Bosses to fight will be picked randomly from this list.
+@export var bosses: Array[PackedScene]
+## Set your scene here (for testing) to override the list of bosses.
 @export var testBoss : PackedScene
 var remainingBosses = []
 

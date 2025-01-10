@@ -31,9 +31,12 @@ var spreadLerpAlpha = 3
 var alternate = 1
 var bulletSpawnOffset = 50
 
+## All outgoing damage is multiplied by this. Mostly useful for testing.
 @export var damageMultiplier = 1
 
+## Emitted whenever the health of the player changes (due to damage or healing).
 signal health_change(node: Player)
+## Emitted whenever the missile charge level changes.
 signal charge_change(node: Player)
 
 func _ready() -> void:

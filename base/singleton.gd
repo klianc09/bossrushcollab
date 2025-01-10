@@ -7,9 +7,13 @@ var particlePool = {}
 var viewportSize : Vector2
 var bossNode : Enemy
 
-signal boss_hp_changed(newHealth: float)
-signal boss_defeated()
+## Emitted when a new Boss spawns and becomes the current boss.
 signal boss_spawned(bossNode: Enemy)
+## Emitted when the current Boss's health changes (damage or healing).
+signal boss_hp_changed(newHealth: float)
+## Emitted when the current Boss has been defeated.
+signal boss_defeated()
+## Emitted when ALL bosses have been defeated.
 signal great_success()
 
 func _enter_tree() -> void:
@@ -57,7 +61,6 @@ func healBoss(healAmount: int):
 
 func bossFightOver():
 	emit_signal("boss_defeated")
-	#TODO: some transition / outro whatever might happen here
 
 func screenshake(amount: float):
 	camera.shake(amount)

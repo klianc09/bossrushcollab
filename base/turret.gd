@@ -1,15 +1,21 @@
 extends Node2D
 
+## Whether this turret is active or not. Will not shoot or reload when inactive.
 @export var active : bool = true
+## The burstdata defining the bullet pattern.
 @export var burst_data : BulletBurst
 var shot_count : int = 0
 var burst_count : int = 0
 var shot_timer : float = 0
 var burst_timer : float = 0
 
+## The direction this turret is shooting in.
 @export var aim_direction : Vector2 = Vector2(-1, 0)
+## Whether the turret should automatically aim towards the player at the start of a burst.
 @export var player_aimed : bool = false
+## The amount of degrees this turret should rotate after every shot.
 @export var rotation_each_shot : float = 0
+## The distance away from the center that bullets should spawn.
 @export var bullet_spawn_offset : float = 0
 
 func reset() -> void:
@@ -27,7 +33,8 @@ func _process(delta: float) -> void:
 					if player_aimed:
 						var player = get_tree().get_nodes_in_group("player").pop_front()
 						aim_direction = player.global_position - global_position
-						#TODO: handle case when aim_direction is zero vector
+						if aim_direction.is_zero_approx():
+							aim_direction = Vector2(-1, 0)
 				shoot()
 				aim_direction = aim_direction.rotated(deg_to_rad(rotation_each_shot))
 				shot_count += 1

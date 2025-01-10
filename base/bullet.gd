@@ -1,14 +1,22 @@
 class_name Bullet
 extends Area2D
 
+## Whether this is an enemy or player bullet. Automatically assigns collision layers based on this.
 @export var enemy_team = true
+## The speed at which this bullet moves forward. [pixels per second]
 @export var bulletSpeed = 100
+## The time after which this bullet despawns. [seconds]
 @export var maxLifetime = 5
+## The amount of damage this bullet deals on impact.
 @export var damage = 1
 var timer = 0
+## Enable for homing bullets.
 @export var homing = false
+## If homing: The node group among which this bullet will search for targets.
 @export var homing_group = "enemy"
+## If homing: The speed at which this bullet will turn toward its target. [degrees per second]
 @export var rotationSpeed = 3
+## The acceleration rate of this bullet. [pixels per second²]
 @export var speedup = 0
 var target : Node2D
 var homingDelay = 0
@@ -34,6 +42,7 @@ func _process(delta: float) -> void:
 		if target == null or not is_instance_valid(target) or (target.get("validTarget") and not target.validTarget):
 			target = searchForNewTarget()
 			if target == null:
+				# no valid target found, so wait a second before trying again, as to not do this every frame
 				homingDelay = 1
 		else:
 			var targetRotation = (target.global_position - position).angle()

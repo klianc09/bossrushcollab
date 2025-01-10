@@ -1,15 +1,24 @@
 class_name Enemy
 extends Area2D
 
+## Name of this enemy, mainly used to display the name of the boss in the intro sequence.
 @export var boss_name : String = "Unnamed Boss"
+## The maximum HP of this enemy. Enemies will spawn with full hp when added to the scene tree.
 @export var maxhp : float = 1
 var hp : float = 1
+## Whether this is a valid target for homing missiles.
 @export var validTarget : bool = true
+## Exactly one node in the scene should have this set to true, it will get registered as the current boss to defeat.
 @export var boss : bool = false
-@export var multipart : bool = false ## TODO figure out how to do multipart bosses as well as weakspots in a flexible and simple way
+## Set this true for parts of multipart bosses. When this is true, the part will not take damage itself, but instead the damage will be redirected to the current boss. Combine with damageMultiplier to create weakspots.
+@export var multipart : bool = false
+## Any incoming damage is multiplied by this.
 @export var damageMultiplier : float = 1
+## The damage this deals to the player when the player touches this.
 @export var contactDamage : int = 1
+## Whether this enemy is destroyed upon impact with the player.
 @export var destroyedOnContact : bool = false
+## As long as this is set to true, this enemy cannot take damage. Use for temporary invincibility e.g. during phase transitions. (multiparts will also not redirect damage while this is active)
 @export var invincible : bool = false
 
 var flashDuration = 0.1
