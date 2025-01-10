@@ -38,7 +38,7 @@ func _on_boss_hp_changed(newHp: int) -> void:
 	$BossHealthBar.value = Singleton.bossNode.hp
 
 func _on_player_charge_change(node: Player) -> void:
-	$ChargeBar.max_value = 2
+	$ChargeBar.max_value = node.maxCharge
 	$ChargeBar.value = node.chargeTimer
 
 

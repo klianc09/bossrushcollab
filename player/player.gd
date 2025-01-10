@@ -15,6 +15,7 @@ var chargeTimer = 0
 var chargeDischarge = 0
 var chargeRate = 1
 var dischargeRate = 2
+var maxCharge = 2
 
 var bulletSpeed = 1800
 var missileSpeed = 900
@@ -65,6 +66,7 @@ func _process(delta: float) -> void:
 	if !Input.is_action_pressed("action_focus"):
 		currentMoveSpeed = focusSpeed
 		chargeTimer += delta * chargeRate
+		chargeTimer = min(chargeTimer, maxCharge)
 		chargeDischarge = chargeConversationRate # guaranteed missiles at start of barrage
 		charge_change.emit(self)
 	else:
