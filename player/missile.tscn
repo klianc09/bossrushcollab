@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://mojmo8rgwryg" path="res://player/bullet.tscn" id="1_j4dbw"]
 
 [node name="missile" instance=ExtResource("1_j4dbw")]
-maxLifetime = 2
+maxLifetime = 2.0
 homing = true
 speedup = 100
 

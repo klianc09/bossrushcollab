@@ -26,6 +26,7 @@ var flashTimer = 0
 
 func _ready() -> void:
 	hp = maxhp
+	collision_layer = 4
 	if boss:
 		Singleton.bossSpawned(self)
 

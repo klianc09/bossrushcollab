@@ -3,10 +3,10 @@ extends Area2D
 
 ## Whether this is an enemy or player bullet. Automatically assigns collision layers based on this.
 @export var enemy_team = true
-## The speed at which this bullet moves forward. [pixels per second]
+## The speed at which this bullet moves forward. [pixels per second] (will usually be overridden by the definition in the BulletBurst)
 @export var bulletSpeed = 100
 ## The time after which this bullet despawns. [seconds]
-@export var maxLifetime = 5
+@export var maxLifetime : float = 5
 ## The amount of damage this bullet deals on impact.
 @export var damage = 1
 var timer = 0

@@ -1,0 +1,172 @@
+[gd_scene load_steps=14 format=3 uid="uid://cho8sjrsq48nf"]
+
+[ext_resource type="Script" path="res://base/enemy.gd" id="1_1cjo3"]
+[ext_resource type="Texture2D" uid="uid://bd5rwwwkcgbsw" path="res://boss/beyblade/gfx/core.png" id="1_hlirn"]
+[ext_resource type="Script" path="res://boss/beyblade/beyblade.gd" id="1_wcmc1"]
+[ext_resource type="Texture2D" uid="uid://dalulrnqhmnli" path="res://boss/beyblade/gfx/blade.png" id="2_tecif"]
+[ext_resource type="Script" path="res://base/turret.gd" id="4_vgl2f"]
+[ext_resource type="Script" path="res://base/burst.gd" id="5_y6j3o"]
+[ext_resource type="Texture2D" uid="uid://35k5ltulbx8p" path="res://boss/beyblade/gfx/gun.png" id="7_8nkhq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bo00"]
+radius = 46.0435
+
+[sub_resource type="Resource" id="Resource_qmnvc"]
+script = ExtResource("5_y6j3o")
+bullet_type = "res://base/laser.tscn"
+bullet_speed = 0.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = -1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ip40"]
+size = Vector2(153, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aapcl"]
+size = Vector2(39.5, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vr8co"]
+size = Vector2(40.5, 72)
+
+[sub_resource type="Resource" id="Resource_caao4"]
+script = ExtResource("5_y6j3o")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 300.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 6
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 2
+
+[node name="Beyblade" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_wcmc1")
+boss_name = "Oversized Beyblade"
+maxhp = 1000.0
+boss = true
+damageMultiplier = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_hlirn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3bo00")
+
+[node name="mainTurret" type="Node2D" parent="."]
+position = Vector2(-41, -1)
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_qmnvc")
+
+[node name="Blade1" type="Area2D" parent="."]
+script = ExtResource("1_1cjo3")
+multipart = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Blade1"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_tecif")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blade1"]
+position = Vector2(2.5, -67.5)
+shape = SubResource("RectangleShape2D_3ip40")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Blade1"]
+position = Vector2(-70, -42)
+shape = SubResource("RectangleShape2D_aapcl")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Blade1"]
+position = Vector2(73, -27)
+shape = SubResource("RectangleShape2D_vr8co")
+
+[node name="t1" type="Sprite2D" parent="Blade1"]
+texture_filter = 1
+position = Vector2(-60, -51)
+rotation = -0.573957
+texture = ExtResource("7_8nkhq")
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)
+
+[node name="t2" type="Sprite2D" parent="Blade1"]
+texture_filter = 1
+position = Vector2(1.52588e-05, -61)
+rotation = 0.00207472
+scale = Vector2(1, 1)
+texture = ExtResource("7_8nkhq")
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)
+
+[node name="t3" type="Sprite2D" parent="Blade1"]
+texture_filter = 1
+position = Vector2(64, -38)
+rotation = 0.665626
+scale = Vector2(1, 1)
+texture = ExtResource("7_8nkhq")
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)
+
+[node name="Blade2" type="Area2D" parent="."]
+rotation = 3.14159
+script = ExtResource("1_1cjo3")
+multipart = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Blade2"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_tecif")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blade2"]
+position = Vector2(-2.00001, -60)
+shape = SubResource("RectangleShape2D_3ip40")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Blade2"]
+position = Vector2(-70, -42)
+shape = SubResource("RectangleShape2D_aapcl")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Blade2"]
+position = Vector2(73, -27)
+shape = SubResource("RectangleShape2D_vr8co")
+
+[node name="t1" type="Sprite2D" parent="Blade2"]
+texture_filter = 1
+position = Vector2(-59.75, -51.75)
+rotation = 5.69216
+scale = Vector2(1, 1)
+texture = ExtResource("7_8nkhq")
+offset = Vector2(-0.81572, -0.810265)
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)
+
+[node name="t2" type="Sprite2D" parent="Blade2"]
+texture_filter = 1
+position = Vector2(-0.250005, -61.5)
+rotation = -0.0149951
+scale = Vector2(1, 1)
+texture = ExtResource("7_8nkhq")
+offset = Vector2(-0.78581, -1.50292)
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)
+
+[node name="t3" type="Sprite2D" parent="Blade2"]
+texture_filter = 1
+position = Vector2(64, -40)
+rotation = 0.648556
+scale = Vector2(1, 1)
+texture = ExtResource("7_8nkhq")
+offset = Vector2(-1.19438, -0.458336)
+script = ExtResource("4_vgl2f")
+burst_data = SubResource("Resource_caao4")
+aim_direction = Vector2(0, 1)

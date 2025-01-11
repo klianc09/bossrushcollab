@@ -26,6 +26,8 @@ func reset() -> void:
 
 func _process(delta: float) -> void:
 	if active:
+		if burst_data.burst_count_limit > -1 and burst_count >= burst_data.burst_count_limit:
+			return
 		if shot_count < burst_data.shots_in_burst:
 			shot_timer -= delta
 			if shot_timer <= 0:
@@ -41,8 +43,6 @@ func _process(delta: float) -> void:
 				shot_timer = burst_data.time_between_shots
 				burst_timer = burst_data.time_between_bursts
 		else:
-			if burst_data.burst_count_limit > -1 and burst_count >= burst_data.burst_count_limit:
-				return
 			burst_timer -= delta
 			if burst_timer <= 0:
 				burst_count += 1
@@ -59,13 +59,13 @@ func shoot() -> void:
 			spreadStep = burst_data.full_shot_spread / burst_data.bullets_per_shot
 		else:
 			spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
-	var shot_direction = aim_direction.rotated(deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
+	var shot_direction = aim_direction.rotated(global_rotation + deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
 	for i in range(burst_data.bullets_per_shot):
 		var bullet = bulletScene.instantiate()
 		var actual_direction = shot_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))
 		bullet.position = global_position + actual_direction.normalized() * bullet_spawn_offset
 		bullet.bulletSpeed = burst_data.bullet_speed
-		bullet.rotation = actual_direction.angle()
+		bullet.rotation = actual_direction.angle() + PI # We assume that left (negative x-axis) is the canonical "forward" direction of bullet scenes
 		Singleton.mainNode.add_child(bullet)
 	var particle = Singleton.createParticle("res://base/particle.tscn")
 	particle.position = global_position
