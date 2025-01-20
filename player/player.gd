@@ -32,6 +32,9 @@ var spreadLerpAlpha = 3
 var alternate = 1
 var bulletSpawnOffset = 50
 
+var invulnerabilityDuration = 3
+var invulnerabilityTimer = 0
+
 ## All outgoing damage is multiplied by this. Mostly useful for testing.
 @export var damageMultiplier = 1
 
@@ -97,6 +100,15 @@ func _process(delta: float) -> void:
 	#clamp to screen
 	position = position.clamp(Vector2.ZERO, Singleton.viewportSize)
 	
+	invulnerabilityTimer -= delta
+	if invulnerabilityTimer > 0:
+		var alternate = sin(invulnerabilityTimer * 50)
+		if alternate > 0:
+			modulate = Color(1, 0.6, 0.7, 0.9)
+		else:
+			modulate = Color(1, 0.6, 0.7, 0.5)
+	else:
+		modulate = Color.WHITE
 
 func spawnBullet(position_: Vector2, velocity: Vector2):
 	var bulletScene : PackedScene = load("res://player/bullet.tscn")
@@ -123,7 +135,10 @@ func spawnMissile(position_: Vector2, velocity: Vector2):
 	return missile
 
 func damage(damageAmount: int) -> void:
+	if invulnerabilityTimer > 0:
+		return
 	health -= damageAmount
+	invulnerabilityTimer = invulnerabilityDuration
 	health_change.emit(self)
 
 func _on_area_entered(area: Area2D) -> void:
