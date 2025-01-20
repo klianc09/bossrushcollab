@@ -115,7 +115,7 @@ func spawnBullet(position_: Vector2, velocity: Vector2):
 	var bullet = bulletScene.instantiate()
 	bullet.position = position_ + velocity.normalized() * bulletSpawnOffset
 	bullet.bulletSpeed = velocity.length()
-	bullet.rotation = velocity.angle()
+	bullet.rotation = bullet.forward.angle_to(velocity)
 	bullet.damage *= damageMultiplier
 	Singleton.mainNode.add_child(bullet)
 	var particle = Singleton.createParticle("res://base/particle.tscn")
@@ -127,7 +127,7 @@ func spawnMissile(position_: Vector2, velocity: Vector2):
 	var missile = bulletScene.instantiate()
 	missile.position = position_ + velocity.normalized() * bulletSpawnOffset
 	missile.bulletSpeed = velocity.length()
-	missile.rotation = velocity.angle()
+	missile.rotation = missile.forward.angle_to(velocity)
 	missile.damage *= damageMultiplier
 	Singleton.mainNode.add_child(missile)
 	var particle = Singleton.createParticle("res://base/particle.tscn")

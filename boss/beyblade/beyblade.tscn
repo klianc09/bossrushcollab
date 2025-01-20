@@ -94,27 +94,25 @@ rotation = -0.573957
 texture = ExtResource("7_8nkhq")
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)
 
 [node name="t2" type="Sprite2D" parent="Blade1"]
 texture_filter = 1
 position = Vector2(1.52588e-05, -61)
 rotation = 0.00207472
-scale = Vector2(1, 1)
 texture = ExtResource("7_8nkhq")
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)
 
 [node name="t3" type="Sprite2D" parent="Blade1"]
 texture_filter = 1
 position = Vector2(64, -38)
 rotation = 0.665626
-scale = Vector2(1, 1)
 texture = ExtResource("7_8nkhq")
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)
 
 [node name="Blade2" type="Area2D" parent="."]
 rotation = 3.14159
@@ -142,31 +140,28 @@ shape = SubResource("RectangleShape2D_vr8co")
 texture_filter = 1
 position = Vector2(-59.75, -51.75)
 rotation = 5.69216
-scale = Vector2(1, 1)
 texture = ExtResource("7_8nkhq")
 offset = Vector2(-0.81572, -0.810265)
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)
 
 [node name="t2" type="Sprite2D" parent="Blade2"]
 texture_filter = 1
 position = Vector2(-0.250005, -61.5)
 rotation = -0.0149951
-scale = Vector2(1, 1)
 texture = ExtResource("7_8nkhq")
 offset = Vector2(-0.78581, -1.50292)
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)
 
 [node name="t3" type="Sprite2D" parent="Blade2"]
 texture_filter = 1
 position = Vector2(64, -40)
 rotation = 0.648556
-scale = Vector2(1, 1)
 texture = ExtResource("7_8nkhq")
 offset = Vector2(-1.19438, -0.458336)
 script = ExtResource("4_vgl2f")
 burst_data = SubResource("Resource_caao4")
-aim_direction = Vector2(0, 1)
+aim_direction = Vector2(0, -1)

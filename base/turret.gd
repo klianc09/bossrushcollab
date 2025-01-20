@@ -65,7 +65,7 @@ func shoot() -> void:
 		var actual_direction = shot_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))
 		bullet.position = global_position + actual_direction.normalized() * bullet_spawn_offset
 		bullet.bulletSpeed = burst_data.bullet_speed
-		bullet.rotation = actual_direction.angle() + PI # We assume that left (negative x-axis) is the canonical "forward" direction of bullet scenes
+		bullet.rotation = bullet.forward.angle_to(actual_direction)
 		Singleton.mainNode.add_child(bullet)
 	var particle = Singleton.createParticle("res://base/particle.tscn")
 	particle.position = global_position

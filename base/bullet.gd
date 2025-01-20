@@ -20,8 +20,11 @@ var timer = 0
 @export var speedup = 0
 var target : Node2D
 var homingDelay = 0
+## The direction assumed to be the front of the bullet (by default towards the left)
+@export var forward : Vector2 = Vector2(-1, 0)
 
 func _ready() -> void:
+	forward = forward.normalized()
 	# collision layers:
 	# Layer 1 (1): Player
 	# Layer 2 (2): Player Bullets
@@ -45,11 +48,10 @@ func _process(delta: float) -> void:
 				# no valid target found, so wait a second before trying again, as to not do this every frame
 				homingDelay = 1
 		else:
-			var targetRotation = (target.global_position - position).angle()
+			var targetRotation = forward.angle_to(target.global_position - position)
 			rotation = rotate_toward(rotation, targetRotation, rotationSpeed * delta)
-	var forward = Vector2(1, 0).rotated(rotation)
 	bulletSpeed += speedup * delta
-	position += forward * bulletSpeed * delta
+	position += forward.rotated(rotation) * bulletSpeed * delta
 	timer += delta
 	if timer >= maxLifetime:
 		despawn(true)

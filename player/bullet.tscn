@@ -10,6 +10,7 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("2_fu2gb")
 enemy_team = false
+forward = Vector2(1, 0)
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.117647, 1, 1)
