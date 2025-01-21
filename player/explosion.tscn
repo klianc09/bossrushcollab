@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5v5h22au4wi0"]
+
+[ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="1_rg1mq"]
+[ext_resource type="Texture2D" uid="uid://b2r6ms0ryjmch" path="res://player/gfx/ex_spark.png" id="2_fytq7"]
+[ext_resource type="Script" path="res://player/explosion.gd" id="2_lm5gc"]
+
+[sub_resource type="Gradient" id="Gradient_c2h1k"]
+offsets = PackedFloat32Array(0, 0.132353, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_fi3g3"]
+offsets = PackedFloat32Array(0, 0.132353, 1)
+colors = PackedColorArray(1, 0.0299173, 0.333276, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="smoke" type="CPUParticles2D"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_rg1mq")
+spread = 180.0
+gravity = Vector2(0, 50)
+initial_velocity_min = 150.52
+initial_velocity_max = 229.88
+damping_min = 500.0
+damping_max = 500.0
+color_ramp = SubResource("Gradient_c2h1k")
+script = ExtResource("2_lm5gc")
+
+[node name="sparks" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_fytq7")
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 317.19
+initial_velocity_max = 785.44
+damping_min = 500.0
+damping_max = 500.0
+color_ramp = SubResource("Gradient_fi3g3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

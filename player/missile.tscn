@@ -6,7 +6,6 @@
 maxLifetime = 2.0
 homing = true
 speedup = 100
-forward = Vector2(1, 0)
 
 [node name="sprite" parent="." index="0"]
 modulate = Color(0, 0.774915, 0.705017, 1)

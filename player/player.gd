@@ -32,8 +32,10 @@ var spreadLerpAlpha = 3
 var alternate = 1
 var bulletSpawnOffset = 50
 
-var invulnerabilityDuration = 3
+var invulnerabilityDuration = 1
 var invulnerabilityTimer = 0
+
+var dead = false
 
 ## All outgoing damage is multiplied by this. Mostly useful for testing.
 @export var damageMultiplier = 1
@@ -51,6 +53,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
 		Singleton.resetPools()
 		get_tree().reload_current_scene()
+	if dead:
+		return
 	var input_x = Input.get_axis("ui_left", "ui_right")
 	var input_y = Input.get_axis("ui_up", "ui_down")
 	var input_vector = Vector2(input_x, input_y).normalized()
@@ -135,10 +139,15 @@ func spawnMissile(position_: Vector2, velocity: Vector2):
 	return missile
 
 func damage(damageAmount: int) -> void:
-	if invulnerabilityTimer > 0:
+	if invulnerabilityTimer > 0 or dead:
 		return
 	health -= damageAmount
 	invulnerabilityTimer = invulnerabilityDuration
+	if health <= 0:
+		dead = true
+		visible = false
+		var expl = Singleton.createParticle("res://player/explosion.tscn")
+		expl.position = position
 	health_change.emit(self)
 
 func _on_area_entered(area: Area2D) -> void:

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://tto3a2kxiqi"]
+
+[ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="1_g88cv"]
+[ext_resource type="Texture2D" uid="uid://bfrqsabuleboh" path="res://player/gfx/ex_debris.png" id="2_sfvua"]
+
+[sub_resource type="Gradient" id="Gradient_0rof8"]
+offsets = PackedFloat32Array(0, 0.887255, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.887255, 0.887255, 0.887255, 1, 1, 1, 1, 0)
+
+[node name="debris" type="RigidBody2D"]
+
+[node name="smoke" type="CPUParticles2D" parent="."]
+texture = ExtResource("1_g88cv")
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+color_ramp = SubResource("Gradient_0rof8")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_sfvua")
