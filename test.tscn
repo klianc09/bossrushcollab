@@ -14,6 +14,7 @@ script = ExtResource("1_de0hb")
 bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw")])
 
 [node name="BgTowerThing" type="Sprite2D" parent="."]
+z_index = -10
 position = Vector2(480, 270)
 scale = Vector2(1.26242, 1.26242)
 texture = ExtResource("4_122uy")

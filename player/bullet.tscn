@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="1_3kebh"]
 [ext_resource type="Script" path="res://base/bullet.gd" id="2_fu2gb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bcqhh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ivej"]
+size = Vector2(117, 20)
 
 [node name="bullet" type="Area2D" groups=["p_bullet"]]
+z_index = -1
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("2_fu2gb")
@@ -18,4 +20,5 @@ scale = Vector2(1, 0.2)
 texture = ExtResource("1_3kebh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bcqhh")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_8ivej")

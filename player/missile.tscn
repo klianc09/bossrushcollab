@@ -1,12 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://cisjfcklwbce0"]
+[gd_scene load_steps=5 format=3 uid="uid://cisjfcklwbce0"]
 
 [ext_resource type="PackedScene" uid="uid://mojmo8rgwryg" path="res://player/bullet.tscn" id="1_j4dbw"]
+[ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="2_7sshd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl1xv"]
+size = Vector2(58, 20)
+
+[sub_resource type="Gradient" id="Gradient_hslml"]
 
 [node name="missile" instance=ExtResource("1_j4dbw")]
-maxLifetime = 2.0
+maxLifetime = 3.0
 homing = true
-speedup = 100
+speedup = -100
 
 [node name="sprite" parent="." index="0"]
 modulate = Color(0, 0.774915, 0.705017, 1)
 scale = Vector2(0.5, 0.2)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_sl1xv")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+position = Vector2(-29, 0)
+lifetime = 0.2
+texture = ExtResource("2_7sshd")
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 95.24
+initial_velocity_max = 95.24
+color_ramp = SubResource("Gradient_hslml")
