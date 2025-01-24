@@ -2,7 +2,7 @@ extends Enemy
 
 var bladeExtension : float = 0
 var maxExtension : float = 300
-var time : float = 0
+var time : float = PI
 var velocity : Vector2 = Vector2(100, 100)
 var radius : float = 50
 var spinSpeed : float = 1
@@ -20,6 +20,7 @@ func _ready():
 	position = Vector2(Singleton.viewportSize.x + radius, Singleton.viewportSize.y / 2)
 	position.y = randf_range(0, Singleton.viewportSize.y)
 	rotation_degrees = randf_range(-30, 30)
+	activateTurrets(false)
 
 func resetTurrets():
 	$Blade1/t1.reset()
@@ -37,6 +38,9 @@ func activateTurrets(active: bool):
 	$Blade2/t2.active = active
 	$Blade2/t3.active = active
 
+func activateLaser(active: bool):
+	$mainTurret.active = active
+
 func _process(delta: float):
 	super(delta)
 	$Blade1.position = Vector2(0, -bladeExtension)
@@ -49,11 +53,16 @@ func _process(delta: float):
 	rotation += delta * spinSpeed
 	if sinValue < 0:
 		rotation += delta * -sinValue * extraSpin
-		activateTurrets(true)
+		if hp < maxhp * 0.75:
+			activateTurrets(true)
+		if hp < maxhp * 0.25:
+			$mainTurret.burst_data.time_between_bursts = 0.25
+		else:
+			activateLaser(false)
 	else:
 		resetTurrets()
 		activateTurrets(false)
-		
+		activateLaser(true)
 	
 	if phase == P.MOVE:
 		var extra = 1
