@@ -23,6 +23,8 @@ var homingDelay = 0
 ## The direction assumed to be the front of the bullet (by default towards the left)
 @export var forward : Vector2 = Vector2(-1, 0)
 
+var dead = false
+
 func _ready() -> void:
 	forward = forward.normalized()
 	# collision layers:
@@ -40,6 +42,8 @@ func _ready() -> void:
 	connect("area_entered", _on_area_entered)
 
 func _process(delta: float) -> void:
+	if dead:
+		return
 	homingDelay -= delta
 	if homing and homingDelay <= 0:
 		if target == null or not is_instance_valid(target) or (target.get("validTarget") and not target.validTarget):
@@ -59,6 +63,7 @@ func _process(delta: float) -> void:
 func despawn(timeout: bool) -> void:
 	var particle = Singleton.createParticle("res://base/particle.tscn")
 	particle.position = position
+	dead = true
 	queue_free()
 
 func searchForNewTarget() -> Node2D:
@@ -68,6 +73,8 @@ func searchForNewTarget() -> Node2D:
 	return enemies.pick_random()
 
 func _on_area_entered(area: Area2D) -> void:
+	if dead:
+		return
 	if area is Enemy or area is Player:
 		area.damage(damage)
 		despawn(false)

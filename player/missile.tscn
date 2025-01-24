@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cisjfcklwbce0"]
+[gd_scene load_steps=7 format=3 uid="uid://cisjfcklwbce0"]
 
 [ext_resource type="PackedScene" uid="uid://mojmo8rgwryg" path="res://player/bullet.tscn" id="1_j4dbw"]
 [ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="2_7sshd"]
+[ext_resource type="Script" path="res://player/missile.gd" id="2_pp23q"]
+[ext_resource type="Script" path="res://base/oneshotparticles.gd" id="4_j3ku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl1xv"]
 size = Vector2(58, 20)
@@ -9,6 +11,7 @@ size = Vector2(58, 20)
 [sub_resource type="Gradient" id="Gradient_hslml"]
 
 [node name="missile" instance=ExtResource("1_j4dbw")]
+script = ExtResource("2_pp23q")
 maxLifetime = 3.0
 homing = true
 speedup = -100
@@ -21,7 +24,7 @@ scale = Vector2(0.5, 0.2)
 position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_sl1xv")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+[node name="smoketrail" type="CPUParticles2D" parent="." index="2"]
 position = Vector2(-29, 0)
 lifetime = 0.2
 texture = ExtResource("2_7sshd")
@@ -30,3 +33,6 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 95.24
 initial_velocity_max = 95.24
 color_ramp = SubResource("Gradient_hslml")
+script = ExtResource("4_j3ku3")
+
+[connection signal="finished" from="smoketrail" to="smoketrail" method="_on_finished"]
