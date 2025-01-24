@@ -21,6 +21,7 @@ func _ready():
 	position.y = randf_range(0, Singleton.viewportSize.y)
 	rotation_degrees = randf_range(-30, 30)
 	activateTurrets(false)
+	$mainTurret.burst_data = $mainTurret.burst_data.duplicate() #edit_resource_workaround
 
 func resetTurrets():
 	$Blade1/t1.reset()
@@ -56,7 +57,7 @@ func _process(delta: float):
 		if hp < maxhp * 0.75:
 			activateTurrets(true)
 		if hp < maxhp * 0.25:
-			$mainTurret.burst_data.time_between_bursts = 0.25
+			$mainTurret.burst_data.time_between_bursts = 0.25 #edit_resource_workaround: doing this apparently permanently alters the resource???
 		else:
 			activateLaser(false)
 	else:
