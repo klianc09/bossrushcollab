@@ -10,7 +10,7 @@ var initial_push_min : float = 20
 var initial_push_max : float = 20
 var has_been_pushed : bool = false
 
-var list_of_bosses
+var list_of_bosses = []
 var wheel_segments
 
 @onready

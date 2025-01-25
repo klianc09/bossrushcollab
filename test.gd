@@ -14,13 +14,15 @@ func _enter_tree() -> void:
 	Singleton.mainNode = self
 
 func _ready() -> void:
+	Singleton.connect("boss_defeated", _on_boss_defeated)
 	if testBoss != null:
-		remainingBosses.push_back(testBoss.instantiate())
+		nextBoss = testBoss.instantiate()
+		spawn_new_boss()
+		remove_child(wheel)
 	else:
 		for boss in bosses:
 			remainingBosses.push_back(boss.instantiate())
-	Singleton.connect("boss_defeated", _on_boss_defeated)
-	prepare_wheel()
+		prepare_wheel()
 
 func spawn_new_boss() -> void:
 	wheel.hide_wheel()
