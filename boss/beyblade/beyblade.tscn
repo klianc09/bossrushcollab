@@ -49,6 +49,7 @@ burst_count_limit = 2
 [node name="Beyblade" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_wcmc1")
 boss_name = "Oversized Beyblade"
+boss_icon = ExtResource("1_hlirn")
 maxhp = 600.0
 boss = true
 damageMultiplier = 5.0

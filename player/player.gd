@@ -106,8 +106,8 @@ func _process(delta: float) -> void:
 	
 	invulnerabilityTimer -= delta
 	if invulnerabilityTimer > 0:
-		var alternate = sin(invulnerabilityTimer * 50)
-		if alternate > 0:
+		var blinking = sin(invulnerabilityTimer * 50)
+		if blinking > 0:
 			modulate = Color(1, 0.6, 0.7, 0.9)
 		else:
 			modulate = Color(1, 0.6, 0.7, 0.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=13 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -8,6 +8,12 @@
 [ext_resource type="Script" path="res://hud.gd" id="5_yj37d"]
 [ext_resource type="PackedScene" uid="uid://dfvwu0wukba6w" path="res://boss/example/example_boss_1.tscn" id="6_mstoc"]
 [ext_resource type="Script" path="res://main_camera.gd" id="7_ifq5u"]
+[ext_resource type="Script" path="res://wheel_of_unfortune.gd" id="9_2wos0"]
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="10_6hmjx"]
+[ext_resource type="Texture2D" uid="uid://crisp4ycea4yn" path="res://base/gfx/wheel.png" id="10_uqdqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1ep4"]
+radius = 190.095
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
@@ -82,19 +88,19 @@ horizontal_alignment = 1
 [node name="SuccessLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
 layout_mode = 0
-offset_left = 449.0
-offset_top = 368.0
-offset_right = 631.0
-offset_bottom = 391.0
+offset_left = 517.0
+offset_top = 468.0
+offset_right = 699.0
+offset_bottom = 491.0
 text = "You defeated the BOSS!"
 
 [node name="DeathLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
 layout_mode = 0
-offset_left = 453.0
-offset_top = 310.0
-offset_right = 635.0
-offset_bottom = 359.0
+offset_left = 157.0
+offset_top = 287.0
+offset_right = 339.0
+offset_bottom = 336.0
 text = "You were defeated!
 Better luck next time"
 
@@ -107,6 +113,26 @@ offset_right = 682.0
 offset_bottom = 443.0
 text = "You defeated ALL bosses, good job!"
 
+[node name="WheelOfUnfortune" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(606, 262)
+script = ExtResource("9_2wos0")
+boss_name = "Wheel Of Unfortune"
+damageMultiplier = 0.0
+
+[node name="wheelbg" type="Sprite2D" parent="WheelOfUnfortune"]
+scale = Vector2(3, 3)
+texture = ExtResource("10_uqdqv")
+
+[node name="Icon" type="Sprite2D" parent="WheelOfUnfortune"]
+position = Vector2(2, -136)
+texture = ExtResource("10_6hmjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WheelOfUnfortune"]
+shape = SubResource("CircleShape2D_s1ep4")
+
+[node name="Icons" type="Node2D" parent="WheelOfUnfortune"]
+
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
 [connection signal="timeout" from="NextBossTimer" to="." method="_on_next_boss_timer_timeout"]
+[connection signal="locked_in" from="WheelOfUnfortune" to="." method="_on_wheel_of_unfortune_locked_in"]

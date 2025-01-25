@@ -3,6 +3,8 @@ extends Area2D
 
 ## Name of this enemy, mainly used to display the name of the boss in the intro sequence.
 @export var boss_name : String = "Unnamed Boss"
+## Icon used to represent this boss for the wheel of unfortune
+@export var boss_icon : Texture2D
 ## The maximum HP of this enemy. Enemies will spawn with full hp when added to the scene tree.
 @export var maxhp : float = 1
 var hp : float = 1

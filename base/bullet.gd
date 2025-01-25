@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		return
 	homingDelay -= delta
 	if homing and homingDelay <= 0:
-		if target == null or not is_instance_valid(target) or (target.get("validTarget") and not target.validTarget):
+		if target == null or not is_valid_homing_target(target):
 			target = searchForNewTarget()
 			if target == null:
 				# no valid target found, so wait a second before trying again, as to not do this every frame
@@ -66,8 +66,12 @@ func despawn(timeout: bool) -> void:
 	dead = true
 	queue_free()
 
+func is_valid_homing_target(node):
+	return is_instance_valid(node) and (node.get("validTarget") == null or node.validTarget)
+
 func searchForNewTarget() -> Node2D:
 	var enemies = get_tree().get_nodes_in_group(homing_group)
+	enemies = enemies.filter(is_valid_homing_target)
 	if enemies.is_empty():
 		return null
 	return enemies.pick_random()
