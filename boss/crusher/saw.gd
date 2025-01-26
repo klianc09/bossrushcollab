@@ -31,4 +31,6 @@ func _process(delta: float) -> void:
 		velocity.y *= -1
 		position.y = Singleton.viewportSize.y -radius
 		hit = true
+	if hit:
+		Singleton.playSfx("bounceSfx")
 	super(delta)

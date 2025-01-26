@@ -28,4 +28,5 @@ func _process(delta: float) -> void:
 		position.y = Singleton.viewportSize.y -radius
 		hit = true
 	if hit:
-		Singleton.screenDirectionalKnockback(velocity.normalized() * 2)
+		$bounceSfx.play()
+		Singleton.screenDirectionalKnockback(velocity.normalized() * 5)

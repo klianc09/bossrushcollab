@@ -12,6 +12,7 @@ var has_been_pushed : bool = false
 
 var list_of_bosses = []
 var wheel_segments
+var current_segment = 0
 
 @onready
 var anchor = position
@@ -27,6 +28,7 @@ func show_wheel():
 	invincible = true
 
 func activate():
+	$impactSfx.play()
 	Singleton.screenshake(4)
 	Singleton.screenDirectionalKnockback(Vector2(0, 10))
 	invincible = false
@@ -63,17 +65,20 @@ func setup_wheel(list_of_bosses):
 
 func _process(delta: float) -> void:
 	super(delta)
+	if len(list_of_bosses) <= 0:
+		return
 	rotate_speed = move_toward(rotate_speed, 0, rotate_slowdown * delta)
 	rotate_speed *= 1 / (1 + rotate_friction * delta)
+	var halfSegmentAngle = deg_to_rad(180.0 / len(list_of_bosses))
 	rotation += rotate_speed * delta
+	var new_segment = (-rotation - halfSegmentAngle) / (halfSegmentAngle * 2)
+	new_segment = posmod(new_segment, len(list_of_bosses))
+	if current_segment != new_segment:
+		$clickSfx.play()
+	current_segment = new_segment
 	if rotate_speed <= 0 and has_been_pushed and not locked:
 		locked = true
-		var up = Vector2.UP.rotated(rotation)
-		for boss in list_of_bosses:
-			var diff = up.angle_to(Vector2.UP.rotated(-wheel_segments[boss]))
-			if abs(diff) < deg_to_rad(180.0 / len(list_of_bosses)):
-				locked_in.emit(boss)
-				break
+		locked_in.emit(list_of_bosses[current_segment])
 
 func damage(amount):
 	if locked or invincible:

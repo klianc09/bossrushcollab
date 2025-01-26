@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cowxj64ynmnla"]
+[gd_scene load_steps=5 format=3 uid="uid://cowxj64ynmnla"]
 
 [ext_resource type="Script" path="res://boss/crusher/saw_big.gd" id="1_xydok"]
 [ext_resource type="Texture2D" uid="uid://bey7kjnoav07j" path="res://boss/crusher/gfx/sawblade.png" id="2_cv1j8"]
+[ext_resource type="AudioStream" uid="uid://dwlih7kjt8u3u" path="res://boss/crusher/sfx/DR SFX DiscBounce1.wav" id="3_0igat"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b5epe"]
 radius = 152.738
@@ -18,3 +19,9 @@ texture = ExtResource("2_cv1j8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b5epe")
+
+[node name="bounceSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0igat")
+volume_db = -5.0
+pitch_scale = 0.8
+bus = &"SFX"

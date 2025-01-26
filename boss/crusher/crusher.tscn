@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://o7nbdjn6d78k"]
+[gd_scene load_steps=24 format=3 uid="uid://o7nbdjn6d78k"]
 
 [ext_resource type="Script" path="res://boss/crusher/crusher.gd" id="1_yjg0c"]
 [ext_resource type="Texture2D" uid="uid://by8rax288ls08" path="res://boss/crusher/gfx/bodypart.png" id="2_8xtdl"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bey7kjnoav07j" path="res://boss/crusher/gfx/sawblade.png" id="3_o8ju3"]
 [ext_resource type="Script" path="res://base/burst.gd" id="4_hkamk"]
 [ext_resource type="Script" path="res://boss/crusher/spin.gd" id="5_c2whu"]
+[ext_resource type="AudioStream" uid="uid://4o1n35l7uf36" path="res://base/sfx/buzzsaw2.wav" id="8_jp257"]
+[ext_resource type="AudioStream" uid="uid://dwlih7kjt8u3u" path="res://boss/crusher/sfx/DR SFX DiscBounce1.wav" id="9_edp2j"]
+[ext_resource type="AudioStream" uid="uid://c8m1pbmkq7hm1" path="res://boss/crusher/sfx/DR SFX DiscBounce2.wav" id="10_ixbvq"]
+[ext_resource type="AudioStream" uid="uid://3lewf5bvqmmi" path="res://boss/crusher/sfx/DR SFX DiscBounce3.wav" id="11_lrevp"]
+[ext_resource type="AudioStream" uid="uid://ir1rgmjkekd" path="res://boss/crusher/sfx/DR SFX DiscBounce4.wav" id="12_u6btw"]
 
 [sub_resource type="Animation" id="Animation_i7bf5"]
 resource_name = "Charge"
@@ -830,6 +835,14 @@ burst_count_limit = -1
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ybsm"]
 radius = 109.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_305wt"]
+random_pitch = 1.3
+streams_count = 4
+stream_0/stream = ExtResource("9_edp2j")
+stream_1/stream = ExtResource("10_ixbvq")
+stream_2/stream = ExtResource("11_lrevp")
+stream_3/stream = ExtResource("12_u6btw")
+
 [node name="Area2D" type="Area2D" groups=["enemy"]]
 position = Vector2(952, 270)
 script = ExtResource("1_yjg0c")
@@ -923,6 +936,11 @@ texture = ExtResource("3_o8ju3")
 script = ExtResource("5_c2whu")
 metadata/_edit_lock_ = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Saw1/Saw1Shape"]
+stream = ExtResource("8_jp257")
+autoplay = true
+bus = &"SFX"
+
 [node name="Saw2" type="Area2D" parent="." groups=["enemy"]]
 script = ExtResource("3_fyvmq")
 validTarget = false
@@ -943,9 +961,24 @@ flip_h = true
 script = ExtResource("5_c2whu")
 metadata/_edit_lock_ = true
 
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Saw2/Saw2Shape"]
+position = Vector2(-5.04547, -449.083)
+scale = Vector2(0.999899, 1.05484)
+stream = ExtResource("8_jp257")
+volume_db = -15.0
+autoplay = true
+bus = &"SFX"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="bounceSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_305wt")
+volume_db = -10.0
+pitch_scale = 0.8
+max_polyphony = 8
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,6 +3,7 @@ extends Node
 var mainNode : Node
 var camera : MainCamera
 var particlePool = {}
+var sfxNodes = {}
 
 var viewportSize : Vector2
 var bossNode : Enemy
@@ -70,3 +71,14 @@ func maintainScreenshake(amount: float):
 
 func screenDirectionalKnockback(push: Vector2):
 	camera.directionalPush(push)
+
+# for sfx that cannot be attached to an object that's gonna be deleted (like a bullet)
+func register_sfx(sfxName: String, sfxNode: AudioStreamPlayer):
+	sfxNodes[sfxName] = sfxNode
+
+func playSfx(sfxName:String):
+	if sfxNodes.has(sfxName):
+		if not is_instance_valid(sfxNodes[sfxName]):
+			sfxNodes.erase(sfxName)
+		else:
+			sfxNodes[sfxName].play()

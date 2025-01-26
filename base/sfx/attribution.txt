@@ -1,0 +1,19 @@
+From freesound.org:
+click.wav
+Mechanical Plastic Click 09 by SmallConfusion -- https://freesound.org/s/751087/ -- License: Attribution 4.0
+buzzsaw2.wav
+Saw machine.wav by 170274 -- https://freesound.org/s/409040/ -- License: Attribution NonCommercial 3.0
+swish.wav
+Basketball Net Swish Sound.wav by Hann90 -- https://freesound.org/s/518048/ -- License: Creative Commons 0
+swishes.wav
+Cartoon Swishes by PixelProphecy -- https://freesound.org/s/497037/ -- License: Attribution 4.0
+
+
+Lots of sound effects made with https://sfbgames.itch.io/chiptone
+
+Disc Room Audio pack courtesy of doseone:
+https://itch.io/jam/disc-room-game-jam
+DR SFX DiscBounce1.wav
+DR SFX DiscBounce2.wav
+DR SFX DiscBounce3.wav
+DR SFX DiscBounce4.wav

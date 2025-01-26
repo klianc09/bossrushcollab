@@ -84,6 +84,7 @@ func _process(delta: float) -> void:
 			chargeTimer -= delta * dischargeRate
 			if chargeDischarge >= chargeConversationRate:
 				chargeDischarge -= chargeConversationRate
+				$shotMissileSfx.play()
 				spawnMissile(position, Vector2(missileSpeed, 0).rotated(deg_to_rad(randf_range(-spreadM2, spreadM2) + spreadM)))
 				spawnMissile(position, Vector2(missileSpeed, 0).rotated(deg_to_rad(randf_range(-spreadM2, spreadM2) - spreadM)))
 			if chargeTimer <= 0:
@@ -99,6 +100,7 @@ func _process(delta: float) -> void:
 				fireRateTimer -= fireRate
 				var fireDir = Vector2(bulletSpeed, 0).rotated(deg_to_rad(randf_range(-spread2, spread2) + spread * alternate))
 				spawnBullet(position, fireDir)
+				$shotSfx.play()
 				alternate = -alternate
 			
 	position += input_vector * delta * currentMoveSpeed
@@ -144,7 +146,9 @@ func damage(damageAmount: int) -> void:
 		return
 	health -= damageAmount
 	invulnerabilityTimer = invulnerabilityDuration
+	$hurtSfx.play()
 	if health <= 0:
+		$deathSfx.play()
 		dead = true
 		visible = false
 		var expl = Singleton.createParticle("res://player/explosion.tscn")

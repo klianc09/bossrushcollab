@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=18 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -12,9 +12,21 @@
 [ext_resource type="Script" path="res://wheel_of_unfortune.gd" id="9_2wos0"]
 [ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="10_6hmjx"]
 [ext_resource type="Texture2D" uid="uid://crisp4ycea4yn" path="res://base/gfx/wheel.png" id="10_uqdqv"]
+[ext_resource type="AudioStream" uid="uid://smat2apl2q8a" path="res://base/sfx/click.wav" id="13_5prqt"]
+[ext_resource type="AudioStream" uid="uid://cep2fiscc35y1" path="res://base/sfx/explosion3.wav" id="14_rnu7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1ep4"]
 radius = 190.095
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nwoc5"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("13_5prqt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6r05k"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("14_rnu7w")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
@@ -132,6 +144,16 @@ texture = ExtResource("10_6hmjx")
 shape = SubResource("CircleShape2D_s1ep4")
 
 [node name="Icons" type="Node2D" parent="WheelOfUnfortune"]
+
+[node name="clickSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
+stream = SubResource("AudioStreamRandomizer_nwoc5")
+max_polyphony = 16
+bus = &"SFX"
+
+[node name="impactSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
+stream = SubResource("AudioStreamRandomizer_6r05k")
+max_polyphony = 16
+bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]

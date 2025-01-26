@@ -1,11 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://dffgnnw8bc6lj"]
+[gd_scene load_steps=12 format=3 uid="uid://dffgnnw8bc6lj"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q4pyb"]
 [ext_resource type="Texture2D" uid="uid://cmwxb2o0xv1wj" path="res://player/gfx/test.png" id="2_8eqy0"]
 [ext_resource type="Texture2D" uid="uid://csshi0oeidt4x" path="res://player/gfx/reticle.png" id="3_3rqfj"]
+[ext_resource type="AudioStream" uid="uid://cybvigh1uo20a" path="res://base/sfx/hurt1.wav" id="4_havn0"]
+[ext_resource type="AudioStream" uid="uid://dm6hwq2ei31h0" path="res://base/sfx/lose1.wav" id="5_oqq4o"]
+[ext_resource type="AudioStream" uid="uid://6ao32yegqcdh" path="res://base/sfx/zap1.wav" id="6_xdxpo"]
+[ext_resource type="AudioStream" uid="uid://bw1mchjytxhjp" path="res://base/sfx/zap2.wav" id="7_rem7a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6kve0"]
 radius = 13.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l5x5o"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_havn0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sf6k4"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("6_xdxpo")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0eqy2"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("7_rem7a")
 
 [node name="player" type="Area2D" groups=["player"]]
 position = Vector2(208, 234)
@@ -29,5 +48,24 @@ texture = ExtResource("3_3rqfj")
 texture_filter = 1
 scale = Vector2(1, -1)
 texture = ExtResource("3_3rqfj")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="hurtSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_l5x5o")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="deathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oqq4o")
+bus = &"SFX"
+
+[node name="shotSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_sf6k4")
+bus = &"SFX"
+
+[node name="shotMissileSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_0eqy2")
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c8m1pbmkq7hm1"
+path="res://.godot/imported/DR SFX DiscBounce2.wav-63cf19f2f77560bc2e2b7bd39f8d3ffe.sample"
+
+[deps]
+
+source_file="res://boss/crusher/sfx/DR SFX DiscBounce2.wav"
+dest_files=["res://.godot/imported/DR SFX DiscBounce2.wav-63cf19f2f77560bc2e2b7bd39f8d3ffe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

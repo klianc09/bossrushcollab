@@ -8,6 +8,7 @@ func _ready() -> void:
 	super()
 	$AnimationPlayer.play("idle")
 	$Timer.start()
+	Singleton.register_sfx("bounceSfx", $bounceSfx)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
