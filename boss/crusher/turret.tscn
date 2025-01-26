@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d32ub4toyomhc"]
+
+[ext_resource type="Texture2D" uid="uid://35k5ltulbx8p" path="res://boss/beyblade/gfx/gun.png" id="1_rgx1y"]
+[ext_resource type="Script" path="res://base/turret.gd" id="2_8w32p"]
+[ext_resource type="Script" path="res://base/burst.gd" id="3_bowku"]
+
+[sub_resource type="Resource" id="Resource_cnhim"]
+script = ExtResource("3_bowku")
+bullet_type = "res://boss/crusher/saw.tscn"
+bullet_speed = 300.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 10.0
+full_shot_spread = 90.0
+bullets_per_shot = 4
+shots_in_burst = 999
+time_between_shots = 0.5
+time_between_bursts = 0.5
+burst_count_limit = -1
+
+[node name="Turret" type="Sprite2D"]
+texture = ExtResource("1_rgx1y")
+script = ExtResource("2_8w32p")
+burst_data = SubResource("Resource_cnhim")
+aim_direction = Vector2(0, -1)

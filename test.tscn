@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=14 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
 [ext_resource type="PackedScene" uid="uid://cho8sjrsq48nf" path="res://boss/beyblade/beyblade.tscn" id="4_74lfw"]
 [ext_resource type="Texture2D" uid="uid://cw5vor2oi4ccf" path="res://base/bg_tower_thing.png" id="4_122uy"]
 [ext_resource type="PackedScene" uid="uid://bl6sm6ilarwmw" path="res://boss/example/enemy_cloud.tscn" id="5_16l7w"]
+[ext_resource type="PackedScene" uid="uid://o7nbdjn6d78k" path="res://boss/crusher/crusher.tscn" id="5_c27a8"]
 [ext_resource type="Script" path="res://hud.gd" id="5_yj37d"]
 [ext_resource type="PackedScene" uid="uid://dfvwu0wukba6w" path="res://boss/example/example_boss_1.tscn" id="6_mstoc"]
 [ext_resource type="Script" path="res://main_camera.gd" id="7_ifq5u"]
@@ -17,7 +18,7 @@ radius = 190.095
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
-bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw")])
+bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw"), ExtResource("5_c27a8")])
 
 [node name="BgTowerThing" type="Sprite2D" parent="."]
 z_index = -10

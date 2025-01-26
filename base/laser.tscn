@@ -1,30 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://fk37cfklq540"]
+[gd_scene load_steps=8 format=3 uid="uid://fk37cfklq540"]
 
 [ext_resource type="Script" path="res://base/laser.gd" id="1_2nh7m"]
 [ext_resource type="Texture2D" uid="uid://c3vqbhwthxx71" path="res://base/gfx/laser_base.png" id="2_fwx6g"]
 [ext_resource type="Texture2D" uid="uid://dujgaamjxtwcf" path="res://base/gfx/laser_extend.png" id="3_f4c55"]
+[ext_resource type="Texture2D" uid="uid://doct6eoex8ogb" path="res://base/gfx/laser_dot2.png" id="4_g12dg"]
+[ext_resource type="Texture2D" uid="uid://b3ypl687at608" path="res://base/gfx/laser_dot.png" id="5_q5r3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb6il"]
-size = Vector2(989, 64)
+size = Vector2(959, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh757"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_g12dg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q5r3b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Laser" type="Area2D"]
 script = ExtResource("1_2nh7m")
 chargeDuration = 1.0
 maxLifetime = 1.5
 
-[node name="Base" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-479.5, 0)
+shape = SubResource("RectangleShape2D_qb6il")
+disabled = true
+
+[node name="LaserSprite" type="Node2D" parent="."]
+
+[node name="Base" type="Sprite2D" parent="LaserSprite"]
 texture_filter = 1
+position = Vector2(-45, 0)
 rotation = 1.5708
 texture = ExtResource("2_fwx6g")
 
-[node name="Extend" type="Sprite2D" parent="."]
+[node name="Extend" type="Sprite2D" parent="LaserSprite"]
 texture_filter = 1
 position = Vector2(-511, 0)
 rotation = 1.5708
 scale = Vector2(1, 7)
 texture = ExtResource("3_f4c55")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-463.5, 0)
-shape = SubResource("RectangleShape2D_qb6il")
-disabled = true
+[node name="chargeSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jh757")
+frame_progress = 0.924006

@@ -18,11 +18,14 @@ var burst_timer : float = 0
 ## The distance away from the center that bullets should spawn.
 @export var bullet_spawn_offset : float = 0
 
+var additional_rotation = 0
+
 func reset() -> void:
 	shot_count = 0
 	burst_count = 0
 	shot_timer = 0
 	burst_timer = 0
+	additional_rotation = 0
 
 func _process(delta: float) -> void:
 	if active:
@@ -37,8 +40,9 @@ func _process(delta: float) -> void:
 						aim_direction = player.global_position - global_position
 						if aim_direction.is_zero_approx():
 							aim_direction = Vector2(-1, 0)
+						aim_direction = aim_direction.rotated(-global_rotation)
 				shoot()
-				aim_direction = aim_direction.rotated(deg_to_rad(rotation_each_shot))
+				additional_rotation += rotation_each_shot
 				shot_count += 1
 				shot_timer = burst_data.time_between_shots
 				burst_timer = burst_data.time_between_bursts
@@ -48,6 +52,7 @@ func _process(delta: float) -> void:
 				burst_count += 1
 				shot_timer = 0
 				shot_count = 0
+				additional_rotation = 0
 
 func shoot() -> void:
 	var bulletScene : PackedScene = load(burst_data.bullet_type)
@@ -59,7 +64,7 @@ func shoot() -> void:
 			spreadStep = burst_data.full_shot_spread / burst_data.bullets_per_shot
 		else:
 			spreadStep = burst_data.full_shot_spread / (burst_data.bullets_per_shot - 1)
-	var shot_direction = aim_direction.rotated(global_rotation + deg_to_rad(randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
+	var shot_direction = aim_direction.rotated(global_rotation + deg_to_rad(additional_rotation + randf_range(-burst_data.shot_inaccuracy, burst_data.shot_inaccuracy)))
 	for i in range(burst_data.bullets_per_shot):
 		var bullet = bulletScene.instantiate()
 		var actual_direction = shot_direction.rotated(deg_to_rad(randf_range(-burst_data.bullet_inaccuracy, burst_data.bullet_inaccuracy) + spreadOffset + spreadStep * i))

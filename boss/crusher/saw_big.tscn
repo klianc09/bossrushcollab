@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cowxj64ynmnla"]
+
+[ext_resource type="Script" path="res://boss/crusher/saw_big.gd" id="1_xydok"]
+[ext_resource type="Texture2D" uid="uid://bey7kjnoav07j" path="res://boss/crusher/gfx/sawblade.png" id="2_cv1j8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5epe"]
+radius = 152.738
+
+[node name="Area2D" type="Area2D"]
+z_index = -1
+script = ExtResource("1_xydok")
+validTarget = false
+invincible = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_cv1j8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b5epe")

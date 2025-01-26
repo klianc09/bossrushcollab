@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 	var input_y = Input.get_axis("ui_up", "ui_down")
 	var input_vector = Vector2(input_x, input_y).normalized()
 	
+	# input_x = max(-position.x, input_x) # prevents player from going max spread when pressing up against the left edge
 	# spreadValue = lerpf(spreadValue, input_x, spreadLerpAlpha)
 	spreadValue = move_toward(spreadValue, input_x, spreadLerpAlpha * delta)
 	$Reticle/r1.position.y = (spreadValue-1) * 30 - 5
