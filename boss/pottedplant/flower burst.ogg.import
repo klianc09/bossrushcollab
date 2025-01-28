@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cy3dr8x018ool"
+path="res://.godot/imported/flower burst.ogg-07fe53595e2b44e8d52c312cc272b0d8.oggvorbisstr"
+
+[deps]
+
+source_file="res://boss/pottedplant/flower burst.ogg"
+dest_files=["res://.godot/imported/flower burst.ogg-07fe53595e2b44e8d52c312cc272b0d8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

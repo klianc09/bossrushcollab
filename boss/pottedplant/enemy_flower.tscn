@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwcetfkxyp8pr"]
+
+[ext_resource type="Script" path="res://boss/pottedplant/emeny_flower.gd" id="1_suv5i"]
+[ext_resource type="Script" path="res://base/turret.gd" id="2_570tu"]
+[ext_resource type="Script" path="res://base/burst.gd" id="3_2khmv"]
+[ext_resource type="Texture2D" uid="uid://cqns42j76o25y" path="res://boss/pottedplant/flowerEnemy.png" id="4_vqgi0"]
+[ext_resource type="AudioStream" uid="uid://b5b3yku02am1r" path="res://boss/pottedplant/flower birth.ogg" id="5_dcxyf"]
+
+[sub_resource type="Resource" id="Resource_qjg88"]
+resource_local_to_scene = true
+script = ExtResource("3_2khmv")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 500.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk3ss"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fpd55"]
+random_pitch = 1.29
+random_volume_offset_db = 0.97
+streams_count = 1
+stream_0/stream = ExtResource("5_dcxyf")
+
+[node name="flower" type="Area2D"]
+scale = Vector2(1.76403, 1.76403)
+script = ExtResource("1_suv5i")
+boss_name = "flower"
+maxhp = 5.0
+destroyedOnContact = true
+
+[node name="Turret1" type="Node2D" parent="."]
+position = Vector2(-14, 0)
+script = ExtResource("2_570tu")
+active = false
+burst_data = SubResource("Resource_qjg88")
+
+[node name="Turret2" type="Node2D" parent="."]
+position = Vector2(0, -13)
+rotation = 1.5708
+script = ExtResource("2_570tu")
+active = false
+burst_data = SubResource("Resource_qjg88")
+
+[node name="Turret3" type="Node2D" parent="."]
+position = Vector2(0, 14)
+rotation = -1.5708
+script = ExtResource("2_570tu")
+active = false
+burst_data = SubResource("Resource_qjg88")
+
+[node name="Turret4" type="Node2D" parent="."]
+position = Vector2(14, 0)
+rotation = -3.14159
+script = ExtResource("2_570tu")
+active = false
+burst_data = SubResource("Resource_qjg88")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.793345
+shape = SubResource("RectangleShape2D_fk3ss")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 0.77696
+scale = Vector2(0.618999, 0.618999)
+texture = ExtResource("4_vqgi0")
+
+[node name="Birth" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fpd55")
+autoplay = true
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

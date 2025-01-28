@@ -1,0 +1,442 @@
+[gd_scene load_steps=39 format=3 uid="uid://dh8qbqx1bsefx"]
+
+[ext_resource type="Script" path="res://boss/pottedplant/pottedPlantEnemy.gd" id="1_v61ih"]
+[ext_resource type="Texture2D" uid="uid://cde45uyp2hv3f" path="res://boss/pottedplant/plantophase2.png" id="2_5ori0"]
+[ext_resource type="Script" path="res://boss/pottedplant/pot_Wall.gd" id="2_7no3t"]
+[ext_resource type="Texture2D" uid="uid://bnvqdn10qtts3" path="res://boss/pottedplant/plantophase3.png" id="3_0lsrs"]
+[ext_resource type="Texture2D" uid="uid://bwdycj5adh5xo" path="res://boss/pottedplant/pot left.png" id="3_x31dm"]
+[ext_resource type="Texture2D" uid="uid://c7jsst2jyyarp" path="res://boss/pottedplant/plantophase1.png" id="4_4f1yg"]
+[ext_resource type="Script" path="res://base/turret.gd" id="4_bxdjs"]
+[ext_resource type="Texture2D" uid="uid://dxqg7syc586l1" path="res://boss/pottedplant/plantophase4.png" id="4_grhp1"]
+[ext_resource type="Texture2D" uid="uid://bklur7v62q4xw" path="res://boss/pottedplant/pot right.png" id="4_j8arg"]
+[ext_resource type="Texture2D" uid="uid://hblc04yhi0fv" path="res://boss/pottedplant/pot bottom.png" id="5_3ov1b"]
+[ext_resource type="Script" path="res://boss/pottedplant/turret_modified_JL.gd" id="6_jafnm"]
+[ext_resource type="Script" path="res://base/burst.gd" id="6_sakfk"]
+[ext_resource type="Texture2D" uid="uid://b6kw7j8est2d" path="res://boss/pottedplant/buds.png" id="7_614ot"]
+[ext_resource type="Texture2D" uid="uid://b3c863usddpog" path="res://boss/pottedplant/pot middle.png" id="7_jtkj7"]
+[ext_resource type="Texture2D" uid="uid://bn1jefo0jggws" path="res://boss/pottedplant/flowers.png" id="8_s551c"]
+[ext_resource type="Texture2D" uid="uid://dk4xvvbf5oddp" path="res://boss/pottedplant/flowers yellow.png" id="12_0bfqy"]
+[ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="17_mpui0"]
+[ext_resource type="AudioStream" uid="uid://du3wq50epg8g8" path="res://boss/pottedplant/pot hit.ogg" id="18_a7agx"]
+[ext_resource type="AudioStream" uid="uid://bgg1iciqn1xdv" path="res://boss/pottedplant/tanks.ogg" id="18_g5ibi"]
+[ext_resource type="AudioStream" uid="uid://tr43kndyj77g" path="res://boss/pottedplant/pottery_smash.ogg" id="19_gpkk4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1pi3"]
+size = Vector2(17.9219, 13.1028)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pk2c"]
+size = Vector2(125, 50.1325)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwkon"]
+size = Vector2(40.4287, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn6ls"]
+size = Vector2(56, 62)
+
+[sub_resource type="Resource" id="Resource_f1ic8"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 200.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_v1xr3"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 45.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_aa7fo"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/homing_enemy_bullet.tscn"
+bullet_speed = 200.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_pxppb"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/homing_enemy_bullet.tscn"
+bullet_speed = 45.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_t3785"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://boss/pottedplant/enemy_flower.tscn"
+bullet_speed = 100.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_2ek36"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/laser.tscn"
+bullet_speed = 0.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = -1
+
+[sub_resource type="Curve" id="Curve_fqos8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.671271, 0.937232), -0.742553, -0.742553, 0, 0, Vector2(1, 0.0375537), -3.01019, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i0m5y"]
+curve = SubResource("Curve_fqos8")
+
+[sub_resource type="Gradient" id="Gradient_bv707"]
+colors = PackedColorArray(1, 1, 1, 1, 0.223529, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jdgpy"]
+gradient = SubResource("Gradient_bv707")
+
+[sub_resource type="Curve" id="Curve_bknyq"]
+max_value = 44.81
+_data = [Vector2(0, 0.302575), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ctedv"]
+curve = SubResource("Curve_bknyq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qruqx"]
+particle_flag_disable_z = true
+angle_min = -86.8
+angle_max = 720.0
+spread = 107.769
+gravity = Vector3(56, -98, 0)
+scale_min = 0.0
+scale_max = 13.5
+scale_curve = SubResource("CurveTexture_ctedv")
+scale_over_velocity_max = 3.4
+color_ramp = SubResource("GradientTexture1D_jdgpy")
+alpha_curve = SubResource("CurveTexture_i0m5y")
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 4.025
+turbulence_noise_speed = Vector3(1, 0, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3mu5i"]
+random_pitch = 1.29
+random_volume_offset_db = 0.97
+streams_count = 1
+stream_0/stream = ExtResource("18_a7agx")
+
+[node name="ExampleBoss1" type="Area2D" groups=["enemy"]]
+rotation = 6.28319
+script = ExtResource("1_v61ih")
+MiddleSprite = ExtResource("2_5ori0")
+EndSprite = ExtResource("3_0lsrs")
+DeathSprite = ExtResource("4_grhp1")
+boss_name = "Common House Plant"
+maxhp = 100.0
+validTarget = false
+boss = true
+
+[node name="Sprite2Left" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-0.571318, -50.8681)
+script = ExtResource("2_7no3t")
+boss_name = null
+maxhp = 60.0
+validTarget = null
+boss = null
+multipart = null
+damageMultiplier = null
+contactDamage = null
+destroyedOnContact = null
+invincible = null
+
+[node name="Sprite5" type="Sprite2D" parent="Sprite2Left"]
+z_index = 2
+texture_filter = 1
+position = Vector2(51.5713, 53.8679)
+rotation = 1.56321
+scale = Vector2(0.641011, 0.613508)
+skew = 0.0968645
+texture = ExtResource("3_x31dm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2Left"]
+position = Vector2(1.07106, -14.6321)
+scale = Vector2(7.64428, 2.21324)
+shape = SubResource("RectangleShape2D_r1pi3")
+
+[node name="Sprite3Right" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-3.57132, 51.1319)
+script = ExtResource("2_7no3t")
+boss_name = null
+maxhp = 60.0
+validTarget = null
+boss = null
+multipart = null
+damageMultiplier = null
+contactDamage = null
+destroyedOnContact = null
+invincible = null
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite3Right"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="Sprite6" type="Sprite2D" parent="Sprite3Right"]
+z_index = 3
+texture_filter = 1
+position = Vector2(52.5713, -56.1321)
+rotation = 1.52891
+scale = Vector2(0.63168, 0.629716)
+skew = 0.132496
+texture = ExtResource("4_j8arg")
+
+[node name="Sprite4Bacl" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-57.5713, 5.1319)
+script = ExtResource("2_7no3t")
+boss_name = null
+maxhp = 60.0
+validTarget = null
+boss = null
+multipart = null
+damageMultiplier = null
+contactDamage = null
+destroyedOnContact = null
+invincible = null
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite4Bacl"]
+position = Vector2(-11.2144, -12.1317)
+shape = SubResource("RectangleShape2D_jwkon")
+
+[node name="Sprite7" type="Sprite2D" parent="Sprite4Bacl"]
+z_index = 4
+texture_filter = 1
+position = Vector2(156.571, -16.1323)
+rotation = 1.5708
+scale = Vector2(0.599042, 0.798061)
+texture = ExtResource("5_3ov1b")
+
+[node name="Main Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(53, -1.00024)
+rotation = 1.57079
+scale = Vector2(0.615097, 0.525047)
+texture = ExtResource("4_4f1yg")
+
+[node name="Buds" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(53, -1.00024)
+rotation = 1.57079
+scale = Vector2(0.615097, 0.525047)
+texture = ExtResource("7_614ot")
+
+[node name="Flowers_Pink" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(53, -1.00024)
+rotation = 1.57079
+scale = Vector2(0.615097, 0.525047)
+texture = ExtResource("8_s551c")
+
+[node name="Flowers_Yellow" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(53, -1.00024)
+rotation = 1.57079
+scale = Vector2(0.615097, 0.525047)
+texture = ExtResource("12_0bfqy")
+
+[node name="Pot Front" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(48, -1.00022)
+rotation = 1.57079
+scale = Vector2(0.684169, 0.512789)
+texture = ExtResource("7_jtkj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.253682, 0.70122)
+scale = Vector2(1.60211, 1.28)
+shape = SubResource("RectangleShape2D_yn6ls")
+
+[node name="phase 1 guns" type="Node2D" parent="."]
+
+[node name="Turret1" type="Node2D" parent="phase 1 guns"]
+position = Vector2(66.9999, -26.0003)
+rotation = -6.28319
+script = ExtResource("4_bxdjs")
+burst_data = SubResource("Resource_f1ic8")
+aim_direction = Vector2(1, 0)
+
+[node name="Turret2" type="Node2D" parent="phase 1 guns"]
+position = Vector2(89.0001, 27.9996)
+rotation = -6.28319
+script = ExtResource("4_bxdjs")
+burst_data = SubResource("Resource_v1xr3")
+aim_direction = Vector2(1, 0)
+
+[node name="Turret3" type="Node2D" parent="phase 1 guns"]
+position = Vector2(123, -45.0005)
+rotation = -6.28319
+script = ExtResource("4_bxdjs")
+burst_data = SubResource("Resource_aa7fo")
+aim_direction = Vector2(1, 0)
+
+[node name="Turret4" type="Node2D" parent="phase 1 guns"]
+position = Vector2(167, 50.9993)
+rotation = -6.28319
+script = ExtResource("4_bxdjs")
+burst_data = SubResource("Resource_pxppb")
+aim_direction = Vector2(1, 0)
+
+[node name="phase 2 guns" type="Node2D" parent="."]
+
+[node name="Turret1" type="Node2D" parent="phase 2 guns"]
+position = Vector2(66.2538, -26.2985)
+rotation = -6.28319
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret2" type="Node2D" parent="phase 2 guns"]
+position = Vector2(89.0001, 28.9996)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret3" type="Node2D" parent="phase 2 guns"]
+position = Vector2(122, -45.0005)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret4" type="Node2D" parent="phase 2 guns"]
+position = Vector2(166, 50.9993)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="LaserTurret" type="Node2D" parent="."]
+position = Vector2(0, 2.72848e-12)
+rotation = -3.14159
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret2" type="Node2D" parent="."]
+rotation = -1.5708
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret3" type="Node2D" parent="."]
+position = Vector2(1.45519e-11, 0)
+rotation = 1.5708
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret4" type="Node2D" parent="."]
+position = Vector2(7.62939e-06, 2)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="OutroTimer" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+
+[node name="FlowerTimer" type="Timer" parent="."]
+
+[node name="BloomTimerPink" type="Timer" parent="."]
+one_shot = true
+
+[node name="BloomTimerYellow" type="Timer" parent="."]
+one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+texture_filter = 1
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_qruqx")
+texture = ExtResource("17_mpui0")
+lifetime = 5.0
+randomness = 0.38
+fixed_fps = 12
+interpolate = false
+trail_lifetime = 8.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GPUParticles2D"]
+stream = ExtResource("18_g5ibi")
+volume_db = -1.972
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[node name="wallHit" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_3mu5i")
+volume_db = -0.986
+bus = &"SFX"
+
+[node name="wallBreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_gpkk4")
+volume_db = -0.986
+
+[connection signal="dead" from="Sprite2Left" to="." method="_on_left_dead"]
+[connection signal="dead" from="Sprite3Right" to="." method="_on_right_dead"]
+[connection signal="dead" from="Sprite4Bacl" to="." method="_on_back_dead"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+[connection signal="timeout" from="OutroTimer" to="." method="_on_outro_timer_timeout"]
+[connection signal="timeout" from="FlowerTimer" to="." method="_on_flower_timer_timeout"]
+[connection signal="timeout" from="BloomTimerPink" to="." method="_on_bloom_timer_timeout"]
+[connection signal="timeout" from="BloomTimerYellow" to="." method="_on_bloom_timer_yellow_timeout"]
