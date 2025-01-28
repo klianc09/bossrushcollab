@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtullg2x8x2kf"]
+
+[ext_resource type="Script" path="res://base/bullet.gd" id="1_elt31"]
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_nftxy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5x57d"]
+radius = 19.0
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_elt31")
+maxLifetime = 3.0
+homing = true
+homing_group = "player"
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(100, 100, 100, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_nftxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5x57d")

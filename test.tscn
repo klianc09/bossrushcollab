@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=19 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
 [ext_resource type="PackedScene" uid="uid://cho8sjrsq48nf" path="res://boss/beyblade/beyblade.tscn" id="4_74lfw"]
 [ext_resource type="Texture2D" uid="uid://cw5vor2oi4ccf" path="res://base/bg_tower_thing.png" id="4_122uy"]
+[ext_resource type="PackedScene" uid="uid://dh8qbqx1bsefx" path="res://boss/pottedplant/potted_plant_boss.tscn" id="5_4xus3"]
 [ext_resource type="PackedScene" uid="uid://bl6sm6ilarwmw" path="res://boss/example/enemy_cloud.tscn" id="5_16l7w"]
 [ext_resource type="PackedScene" uid="uid://o7nbdjn6d78k" path="res://boss/crusher/crusher.tscn" id="5_c27a8"]
 [ext_resource type="Script" path="res://hud.gd" id="5_yj37d"]
@@ -31,6 +32,7 @@ stream_0/stream = ExtResource("14_rnu7w")
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
 bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw"), ExtResource("5_c27a8")])
+testBoss = ExtResource("5_4xus3")
 
 [node name="BgTowerThing" type="Sprite2D" parent="."]
 z_index = -10
@@ -148,12 +150,10 @@ shape = SubResource("CircleShape2D_s1ep4")
 [node name="clickSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
 stream = SubResource("AudioStreamRandomizer_nwoc5")
 max_polyphony = 16
-bus = &"SFX"
 
 [node name="impactSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
 stream = SubResource("AudioStreamRandomizer_6r05k")
 max_polyphony = 16
-bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]

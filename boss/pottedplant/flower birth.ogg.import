@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5b3yku02am1r"
+path="res://.godot/imported/flower birth.ogg-099d46bd61f6ddf8fca6e9a3474ad2db.oggvorbisstr"
+
+[deps]
+
+source_file="res://boss/pottedplant/flower birth.ogg"
+dest_files=["res://.godot/imported/flower birth.ogg-099d46bd61f6ddf8fca6e9a3474ad2db.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

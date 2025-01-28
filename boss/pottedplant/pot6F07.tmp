@@ -1,0 +1,285 @@
+[gd_scene load_steps=14 format=3 uid="uid://dh8qbqx1bsefx"]
+
+[ext_resource type="Script" path="res://boss/pottedplant/pottedPlantEnemy.gd" id="1_v61ih"]
+[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_6r8r2"]
+[ext_resource type="Script" path="res://base/enemy.gd" id="3_eyjys"]
+[ext_resource type="Script" path="res://boss/pottedplant/turret_modified_JL.gd" id="6_jafnm"]
+[ext_resource type="Script" path="res://base/burst.gd" id="6_sakfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pk2c"]
+size = Vector2(125, 323.163)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yn6ls"]
+size = Vector2(56, 62)
+
+[sub_resource type="Resource" id="Resource_mxc66"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 45.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_iskaq"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 200.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_d3yrt"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/enemy_bullet.tscn"
+bullet_speed = 45.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_a6mc5"]
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/homing_enemy_bullet.tscn"
+bullet_speed = 200.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_t3785"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://boss/pottedplant/enemy_flower.tscn"
+bullet_speed = 100.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[sub_resource type="Resource" id="Resource_2ek36"]
+resource_local_to_scene = true
+script = ExtResource("6_sakfk")
+bullet_type = "res://base/laser.tscn"
+bullet_speed = 0.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 0.0
+bullets_per_shot = 1
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = -1
+
+[node name="ExampleBoss1" type="Area2D" groups=["enemy"]]
+rotation = 6.28319
+script = ExtResource("1_v61ih")
+boss_name = "Common House Plant"
+maxhp = 100.0
+validTarget = false
+boss = true
+
+[node name="Sprite2" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-0.571318, -50.8681)
+rotation = -0.104896
+scale = Vector2(1, 0.2)
+script = ExtResource("3_eyjys")
+maxhp = 40.0
+validTarget = false
+
+[node name="Sprite5" type="Sprite2D" parent="Sprite2"]
+modulate = Color(6.78644e-06, 0.745202, 0.372887, 1)
+position = Vector2(-1.80385, -18.1979)
+rotation = -0.100915
+scale = Vector2(0.9685, 0.708706)
+skew = 0.0968645
+texture = ExtResource("2_6r8r2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2"]
+position = Vector2(-2.5, -102.581)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="Sprite3" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-3.57132, 51.1319)
+rotation = 0.119688
+scale = Vector2(1, 0.2)
+script = ExtResource("3_eyjys")
+maxhp = 40.0
+validTarget = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite3"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="Sprite6" type="Sprite2D" parent="Sprite3"]
+modulate = Color(6.78644e-06, 0.745202, 0.372887, 1)
+position = Vector2(0.133042, 12.859)
+rotation = -0.138053
+scale = Vector2(0.972652, 0.708582)
+skew = 0.132496
+texture = ExtResource("2_6r8r2")
+
+[node name="Sprite4" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2(-57.5713, 5.1319)
+rotation = 1.59233
+scale = Vector2(1, 0.2)
+script = ExtResource("3_eyjys")
+maxhp = 40.0
+validTarget = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite4"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_5pk2c")
+
+[node name="Sprite7" type="Sprite2D" parent="Sprite4"]
+modulate = Color(6.78644e-06, 0.745202, 0.372887, 1)
+position = Vector2(-0.469886, -9.07651)
+rotation = -0.107303
+scale = Vector2(0.96912, 0.708687)
+skew = 0.102994
+texture = ExtResource("2_6r8r2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(0.253679, 0.70122)
+scale = Vector2(0.96377, 0.76)
+texture = ExtResource("2_6r8r2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.253682, 0.70122)
+scale = Vector2(1.60211, 1.28)
+shape = SubResource("RectangleShape2D_yn6ls")
+
+[node name="phase 1 guns" type="Node2D" parent="."]
+
+[node name="Turret1" type="Node2D" parent="phase 1 guns"]
+position = Vector2(66.2538, -26.2985)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_mxc66")
+
+[node name="Turret2" type="Node2D" parent="phase 1 guns"]
+position = Vector2(90.2536, 23.7016)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_iskaq")
+
+[node name="Turret3" type="Node2D" parent="phase 1 guns"]
+position = Vector2(127.254, -43.2982)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_d3yrt")
+
+[node name="Turret4" type="Node2D" parent="phase 1 guns"]
+position = Vector2(172.254, 47.702)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_a6mc5")
+
+[node name="phase 2 guns" type="Node2D" parent="."]
+
+[node name="Turret1" type="Node2D" parent="phase 2 guns"]
+position = Vector2(66.2538, -26.2985)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret2" type="Node2D" parent="phase 2 guns"]
+position = Vector2(90.2536, 23.7016)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret3" type="Node2D" parent="phase 2 guns"]
+position = Vector2(127.254, -43.2982)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="Turret4" type="Node2D" parent="phase 2 guns"]
+position = Vector2(172.254, 47.702)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_t3785")
+player_aimed = true
+
+[node name="LaserTurret" type="Node2D" parent="."]
+position = Vector2(0, 2.72848e-12)
+rotation = -3.14159
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret2" type="Node2D" parent="."]
+rotation = -1.5708
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret3" type="Node2D" parent="."]
+position = Vector2(1.45519e-11, 0)
+rotation = 1.5708
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="LaserTurret4" type="Node2D" parent="."]
+position = Vector2(7.62939e-06, 2)
+script = ExtResource("6_jafnm")
+active = false
+burst_data = SubResource("Resource_2ek36")
+aim_direction = Vector2(1, 0)
+localSpace = true
+
+[node name="PauseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="OutroTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="FlowerTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+[connection signal="timeout" from="OutroTimer" to="." method="_on_outro_timer_timeout"]
+[connection signal="timeout" from="FlowerTimer" to="." method="_on_flower_timer_timeout"]
