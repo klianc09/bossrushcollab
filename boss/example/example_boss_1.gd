@@ -13,7 +13,7 @@ var phase = Phase.INTRO
 func _ready() -> void:
 	super() # very important to call the base function (from the enemy script)
 	invincible = true
-	$CritArea.invincible = false
+	$CritArea.invincible = true
 	position.x = Singleton.viewportSize.x + 500
 	position.y = Singleton.viewportSize.y / 2
 

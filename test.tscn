@@ -31,8 +31,7 @@ stream_0/stream = ExtResource("14_rnu7w")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
-bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw"), ExtResource("5_c27a8")])
-testBoss = ExtResource("5_4xus3")
+bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw"), ExtResource("5_c27a8"), ExtResource("5_4xus3")])
 
 [node name="BgTowerThing" type="Sprite2D" parent="."]
 z_index = -10
@@ -150,10 +149,12 @@ shape = SubResource("CircleShape2D_s1ep4")
 [node name="clickSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
 stream = SubResource("AudioStreamRandomizer_nwoc5")
 max_polyphony = 16
+bus = &"SFX"
 
 [node name="impactSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
 stream = SubResource("AudioStreamRandomizer_6r05k")
 max_polyphony = 16
+bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
