@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dh8qbqx1bsefx"]
+[gd_scene load_steps=43 format=3 uid="uid://dh8qbqx1bsefx"]
 
 [ext_resource type="Script" path="res://boss/pottedplant/pottedPlantEnemy.gd" id="1_v61ih"]
 [ext_resource type="Texture2D" uid="uid://cde45uyp2hv3f" path="res://boss/pottedplant/plantophase2.png" id="2_5ori0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dxqg7syc586l1" path="res://boss/pottedplant/plantophase4.png" id="4_grhp1"]
 [ext_resource type="Texture2D" uid="uid://bklur7v62q4xw" path="res://boss/pottedplant/pot right.png" id="4_j8arg"]
 [ext_resource type="Texture2D" uid="uid://hblc04yhi0fv" path="res://boss/pottedplant/pot bottom.png" id="5_3ov1b"]
+[ext_resource type="Texture2D" uid="uid://beahp1so4qcpb" path="res://boss/pottedplant/wheel icon.png" id="5_j7y1g"]
 [ext_resource type="Script" path="res://boss/pottedplant/turret_modified_JL.gd" id="6_jafnm"]
 [ext_resource type="Script" path="res://base/burst.gd" id="6_sakfk"]
 [ext_resource type="Texture2D" uid="uid://b6kw7j8est2d" path="res://boss/pottedplant/buds.png" id="7_614ot"]
@@ -163,12 +164,14 @@ streams_count = 1
 stream_0/stream = ExtResource("20_owkoa")
 
 [node name="ExampleBoss1" type="Area2D" groups=["enemy"]]
+texture_filter = 1
 rotation = 6.28319
 script = ExtResource("1_v61ih")
 MiddleSprite = ExtResource("2_5ori0")
 EndSprite = ExtResource("3_0lsrs")
 DeathSprite = ExtResource("4_grhp1")
 boss_name = "Common House Plant"
+boss_icon = ExtResource("5_j7y1g")
 maxhp = 100.0
 validTarget = false
 boss = true
