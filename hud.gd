@@ -14,6 +14,10 @@ func _on_boss_spawned(boss: Enemy):
 	$BossNameLabel.visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_callback(endOfSpawnSequence).set_delay(2)
+	_on_boss_hp_changed(boss.hp) #also update the boss hp bar upon spawning
+	var tween_hp = get_tree().create_tween()
+	$BossHealthBar.value = 0
+	tween_hp.tween_property($BossHealthBar, "value", $BossHealthBar.max_value, 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 func endOfSpawnSequence():
 	$ApproachingLabel.visible = false

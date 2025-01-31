@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=102 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -95,6 +95,8 @@
 [ext_resource type="Texture2D" uid="uid://dht4bg44xe7jk" path="res://base/bg/0079.jpg" id="85_tgc17"]
 [ext_resource type="Texture2D" uid="uid://n6x1ucu4go76" path="res://base/bg/0080.jpg" id="86_0fwfg"]
 [ext_resource type="Texture2D" uid="uid://b3lf6juuvkjxw" path="res://base/bg/0081.jpg" id="87_fmcrr"]
+[ext_resource type="Script" path="res://player/heart_container.gd" id="89_f5ftk"]
+[ext_resource type="Texture2D" uid="uid://pc43q7qmjelq" path="res://player/gfx/heart.png" id="90_ml6uh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
 animations = [{
@@ -374,6 +376,32 @@ frame_progress = 0.308991
 
 [node name="player" parent="." instance=ExtResource("2_1jh4n")]
 
+[node name="HeartContainer" type="HBoxContainer" parent="player"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 66.0
+grow_horizontal = 2
+script = ExtResource("89_f5ftk")
+
+[node name="Heart1" type="TextureRect" parent="player/HeartContainer"]
+layout_mode = 2
+texture = ExtResource("90_ml6uh")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="player/HeartContainer"]
+layout_mode = 2
+texture = ExtResource("90_ml6uh")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="player/HeartContainer"]
+layout_mode = 2
+texture = ExtResource("90_ml6uh")
+expand_mode = 2
+
 [node name="NextBossTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -394,7 +422,6 @@ script = ExtResource("5_yj37d")
 layout_mode = 0
 offset_right = 687.0
 offset_bottom = 27.0
-value = 100.0
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer/hud"]
 layout_mode = 0
@@ -491,5 +518,6 @@ bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
+[connection signal="health_change" from="player" to="player/HeartContainer" method="_on_player_health_change"]
 [connection signal="timeout" from="NextBossTimer" to="." method="_on_next_boss_timer_timeout"]
 [connection signal="locked_in" from="WheelOfUnfortune" to="." method="_on_wheel_of_unfortune_locked_in"]
