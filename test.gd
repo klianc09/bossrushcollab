@@ -10,11 +10,15 @@ var nextBoss
 @onready
 var wheel = $WheelOfUnfortune
 
+@onready
+var bg = $BgTowerThing
+
 func _enter_tree() -> void:
 	Singleton.mainNode = self
 
 func _ready() -> void:
 	Singleton.connect("boss_defeated", _on_boss_defeated)
+	Singleton.connect("boss_spawned", _on_boss_spawned)
 	if testBoss != null:
 		nextBoss = testBoss.instantiate()
 		spawn_new_boss()
@@ -36,7 +40,13 @@ func _on_next_boss_timer_timeout() -> void:
 	spawn_new_boss()
 
 func _on_boss_defeated():
+	var tween = get_tree().create_tween()
+	tween.tween_property(bg, "modulate", Color.WHITE, 1)
 	prepare_wheel()
+
+func _on_boss_spawned(boss):
+	var tween = get_tree().create_tween()
+	tween.tween_property(bg, "modulate", boss.boss_bg_color, 1)
 
 func prepare_wheel():
 	if remainingBosses.is_empty():

@@ -5,6 +5,8 @@ extends Area2D
 @export var boss_name : String = "Unnamed Boss"
 ## Icon used to represent this boss for the wheel of unfortune
 @export var boss_icon : Texture2D
+## The color the background gets tinted for this fight
+@export var boss_bg_color : Color = Color.WHITE
 ## The maximum HP of this enemy. Enemies will spawn with full hp when added to the scene tree.
 @export var maxhp : float = 1
 var hp : float = 1

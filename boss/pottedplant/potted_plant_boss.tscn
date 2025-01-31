@@ -172,6 +172,7 @@ EndSprite = ExtResource("3_0lsrs")
 DeathSprite = ExtResource("4_grhp1")
 boss_name = "Common House Plant"
 boss_icon = ExtResource("5_j7y1g")
+boss_bg_color = Color(0.732154, 0.952847, 1, 1)
 maxhp = 100.0
 validTarget = false
 boss = true

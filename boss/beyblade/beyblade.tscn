@@ -50,6 +50,7 @@ burst_count_limit = 2
 script = ExtResource("1_wcmc1")
 boss_name = "Oversized Beyblade"
 boss_icon = ExtResource("1_hlirn")
+boss_bg_color = Color(0.138031, 0.000183065, 0.374785, 1)
 maxhp = 600.0
 boss = true
 damageMultiplier = 5.0

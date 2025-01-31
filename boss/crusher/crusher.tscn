@@ -848,6 +848,7 @@ position = Vector2(952, 270)
 script = ExtResource("1_yjg0c")
 boss_name = "Hackfleischhassender Zerhacker"
 boss_icon = ExtResource("3_o8ju3")
+boss_bg_color = Color(0.987817, 0.562828, 0.679976, 1)
 maxhp = 300.0
 boss = true
 

@@ -30,6 +30,7 @@ burst_count_limit = -1
 collision_layer = 4
 script = ExtResource("1_vplxl")
 boss_name = "Perfectly Boring Example Boss"
+boss_bg_color = Color(0.656795, 0.906433, 0.864752, 1)
 maxhp = 100.0
 validTarget = false
 boss = true

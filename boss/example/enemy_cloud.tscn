@@ -7,6 +7,7 @@
 script = ExtResource("1_o0rhy")
 boss_name = "Scary Godot Icon Cloud"
 boss_icon = ExtResource("2_gwjtn")
+boss_bg_color = Color(0.45864, 0.93126, 0.579687, 1)
 maxhp = 100.0
 validTarget = false
 boss = true
