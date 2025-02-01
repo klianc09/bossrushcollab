@@ -86,9 +86,9 @@ func _process(delta: float) -> void:
 	if current_segment != new_segment:
 		$clickSfx.play()
 		if (pointer_wiggle <= 0):
-			pointer_wiggle = 1
+			pointer_wiggle = 1.0
 			var tween = get_tree().create_tween()
-			tween.tween_property(self, "pointer_wiggle", 0.0, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD) # for some reason this tween does not work as I want it to???
+			tween.tween_property(self, "pointer_wiggle", 0.0, 0).set_delay(0.05)
 	current_segment = new_segment
 	if rotate_speed <= 0 and has_been_pushed and not locked:
 		locked = true
