@@ -28,7 +28,7 @@ func resetPools() -> void:
 
 func resetScene():
 	resetPools()
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://test.tscn")
 
 func createParticle(scene_name: String) -> Node2D:
 	if not particlePool.has(scene_name):

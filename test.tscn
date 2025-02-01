@@ -518,11 +518,11 @@ stretch_mode = 1
 [node name="ApproachingLabel" type="Label" parent="CanvasLayer/hud/TopStrip"]
 layout_mode = 0
 offset_left = 996.0
-offset_top = 23.0
-offset_right = 1259.0
-offset_bottom = 53.0
+offset_top = 18.0
+offset_right = 1320.0
+offset_bottom = 56.0
 theme = ExtResource("96_gh3iu")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 37
 text = "Boss Approaching:"
 
 [node name="TopStrip2" type="TextureRect" parent="CanvasLayer/hud"]
@@ -540,11 +540,11 @@ stretch_mode = 1
 [node name="ApproachingLabel" type="Label" parent="CanvasLayer/hud/TopStrip2"]
 layout_mode = 0
 offset_left = 996.0
-offset_top = 23.0
-offset_right = 1259.0
-offset_bottom = 53.0
+offset_top = 18.0
+offset_right = 1331.0
+offset_bottom = 56.0
 theme = ExtResource("96_gh3iu")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 37
 text = "Boss Approaching: "
 
 [node name="PauseMenu" type="ColorRect" parent="CanvasLayer"]

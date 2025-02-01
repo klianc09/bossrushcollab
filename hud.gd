@@ -18,24 +18,25 @@ func _process(delta: float) -> void:
 	# $BossHealthBar.tint_progress = hp_highlight_color
 
 func _on_boss_spawned(boss: Enemy):
+	var labelypos = 18
 	$TopStrip.visible = true
 	$TopStrip.scale = Vector2(1, 0)
 	$TopStrip2.visible = true
 	$TopStrip2.scale = Vector2(1, 0)
 	$TopStrip/ApproachingLabel.text = Singleton.bossNode.boss_name
-	$TopStrip/ApproachingLabel.position = Vector2(996, 23)
+	$TopStrip/ApproachingLabel.position = Vector2(996, labelypos)
 	$TopStrip2/ApproachingLabel.text = "Boss Approaching"
 	# workaround to force update the label size before the next frame: https://github.com/godotengine/godot/issues/7593
 	var update = $TopStrip2/ApproachingLabel.size
 	$TopStrip2/ApproachingLabel.size = update
 	# end workaround
-	$TopStrip2/ApproachingLabel.position = Vector2(-$TopStrip2/ApproachingLabel.size.x, 23)
+	$TopStrip2/ApproachingLabel.position = Vector2(-$TopStrip2/ApproachingLabel.size.x, labelypos)
 	var textDuration = 3
 	var tween = get_tree().create_tween()
 	tween.tween_property($TopStrip, "scale", Vector2(1, 1), 0.15)
 	tween.parallel().tween_property($TopStrip2, "scale", Vector2(1, 1), 0.15)
-	tween.tween_property($TopStrip/ApproachingLabel, "position", Vector2(-$TopStrip/ApproachingLabel.size.x, 23), textDuration)
-	tween.parallel().tween_property($TopStrip2/ApproachingLabel, "position", Vector2(996, 23), textDuration)
+	tween.tween_property($TopStrip/ApproachingLabel, "position", Vector2(-$TopStrip/ApproachingLabel.size.x, labelypos), textDuration)
+	tween.parallel().tween_property($TopStrip2/ApproachingLabel, "position", Vector2(996, labelypos), textDuration)
 	tween.tween_property($TopStrip, "scale", Vector2(1, 0), 0.15)
 	tween.parallel().tween_property($TopStrip2, "scale", Vector2(1, 0), 0.15)
 	tween.tween_callback(endOfSpawnSequence).set_delay(2)
