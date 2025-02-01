@@ -420,11 +420,13 @@ bus = &"SFX"
 [node name="wallBreak" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_gpkk4")
 volume_db = -0.986
+bus = &"SFX"
 
-[node name="wallBreak2" type="AudioStreamPlayer2D" parent="."]
+[node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("22_owedk")
 volume_db = -1.972
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="dead" from="Sprite2Left" to="." method="_on_left_dead"]

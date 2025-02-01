@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfvwu0wukba6w"]
+[gd_scene load_steps=11 format=3 uid="uid://dfvwu0wukba6w"]
 
 [ext_resource type="Script" path="res://boss/example/example_boss_1.gd" id="1_vplxl"]
 [ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_s7uk1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://base/turret.gd" id="4_806g1"]
 [ext_resource type="Resource" uid="uid://bnbyluvtv2bds" path="res://base/burst_example.tres" id="5_l2mtf"]
 [ext_resource type="Script" path="res://base/burst.gd" id="6_bwexw"]
+[ext_resource type="AudioStream" uid="uid://smpljv385yn3" path="res://music/mucke.ogg" id="7_v6clt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yn6ls"]
 size = Vector2(56, 62)
@@ -95,6 +96,11 @@ one_shot = true
 [node name="OutroTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v6clt")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]
 [connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]

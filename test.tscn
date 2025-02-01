@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=109 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -102,6 +102,7 @@
 [ext_resource type="Texture2D" uid="uid://c155by58vuxv" path="res://base/gfx/boss_hp_full.png" id="95_g4vd7"]
 [ext_resource type="Theme" uid="uid://curncucwwts4b" path="res://ui_theme.tres" id="96_gh3iu"]
 [ext_resource type="Texture2D" uid="uid://bf0i5keerdndq" path="res://base/gfx/hazard_stripe_v2.png" id="96_qr4db"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="98_idsex"]
 [ext_resource type="Texture2D" uid="uid://dwyt0nslh4t8b" path="res://base/gfx/wheel_pointer.png" id="98_iygmo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
@@ -416,6 +417,7 @@ position = Vector2(480, 270)
 script = ExtResource("7_ifq5u")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="hud" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -545,6 +547,57 @@ theme = ExtResource("96_gh3iu")
 theme_override_font_sizes/font_size = 30
 text = "Boss Approaching: "
 
+[node name="PauseMenu" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.473976, 0.473976, 0.473976, 0.881)
+script = ExtResource("98_idsex")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -118.0
+offset_right = 76.5
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueBtn" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(250, 64)
+layout_mode = 2
+theme = ExtResource("96_gh3iu")
+text = "Continue"
+
+[node name="MusicCheckbox" type="CheckBox" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("96_gh3iu")
+text = "Music"
+
+[node name="SFXCheckbox" type="CheckBox" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("96_gh3iu")
+text = "SFX"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("96_gh3iu")
+
+[node name="RestartBtn" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("96_gh3iu")
+text = "Restart"
+
 [node name="WheelOfUnfortune" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(753, 268)
 script = ExtResource("9_2wos0")
@@ -590,4 +643,6 @@ offset = Vector2(-2, 22)
 [connection signal="health_change" from="player" to="player/HeartContainer" method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
 [connection signal="timeout" from="NextBossTimer" to="." method="_on_next_boss_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/ContinueBtn" to="CanvasLayer/PauseMenu" method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/RestartBtn" to="CanvasLayer/PauseMenu" method="_on_restart_btn_pressed"]
 [connection signal="locked_in" from="WheelOfUnfortune" to="." method="_on_wheel_of_unfortune_locked_in"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl6sm6ilarwmw"]
+[gd_scene load_steps=4 format=3 uid="uid://bl6sm6ilarwmw"]
 
 [ext_resource type="Script" path="res://boss/example/enemy_cloud.gd" id="1_o0rhy"]
 [ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_gwjtn"]
+[ext_resource type="AudioStream" uid="uid://dqne464kkf77p" path="res://music/mucke_bass_boosted.ogg" id="3_0o0mi"]
 
 [node name="cloudboss" type="Area2D"]
 script = ExtResource("1_o0rhy")
@@ -19,6 +20,11 @@ autostart = true
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0o0mi")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

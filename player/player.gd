@@ -66,8 +66,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
-		Singleton.resetPools()
-		get_tree().reload_current_scene()
+		Singleton.resetScene()
 	if dead:
 		return
 	var input_x = Input.get_axis("ui_left", "ui_right")

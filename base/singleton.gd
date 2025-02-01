@@ -8,6 +8,9 @@ var sfxNodes = {}
 var viewportSize : Vector2
 var bossNode : Enemy
 
+var musicMuted = false
+var sfxMuted = false
+
 ## Emitted when a new Boss spawns and becomes the current boss.
 signal boss_spawned(bossNode: Enemy)
 ## Emitted when the current Boss's health changes (damage or healing).
@@ -22,6 +25,10 @@ func _enter_tree() -> void:
 
 func resetPools() -> void:
 	particlePool = {}
+
+func resetScene():
+	resetPools()
+	get_tree().reload_current_scene()
 
 func createParticle(scene_name: String) -> Node2D:
 	if not particlePool.has(scene_name):

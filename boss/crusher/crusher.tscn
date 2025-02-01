@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://o7nbdjn6d78k"]
+[gd_scene load_steps=25 format=3 uid="uid://o7nbdjn6d78k"]
 
 [ext_resource type="Script" path="res://boss/crusher/crusher.gd" id="1_yjg0c"]
 [ext_resource type="Texture2D" uid="uid://by8rax288ls08" path="res://boss/crusher/gfx/bodypart.png" id="2_8xtdl"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c8m1pbmkq7hm1" path="res://boss/crusher/sfx/DR SFX DiscBounce2.wav" id="10_ixbvq"]
 [ext_resource type="AudioStream" uid="uid://3lewf5bvqmmi" path="res://boss/crusher/sfx/DR SFX DiscBounce3.wav" id="11_lrevp"]
 [ext_resource type="AudioStream" uid="uid://ir1rgmjkekd" path="res://boss/crusher/sfx/DR SFX DiscBounce4.wav" id="12_u6btw"]
+[ext_resource type="AudioStream" uid="uid://bd0qflx6urqm7" path="res://music/JohnLee_Cooper_-_dance_shit_idk.ogg" id="13_b5puo"]
 
 [sub_resource type="Animation" id="Animation_i7bf5"]
 resource_name = "Charge"
@@ -372,7 +373,7 @@ tracks/14/keys = {
 
 [sub_resource type="Animation" id="Animation_ak2s1"]
 resource_name = "Slash"
-length = 2.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -380,7 +381,7 @@ tracks/0/path = NodePath("Saw1/Saw1Shape:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 1.2, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 2.63333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-318, -235), Vector2(-254, -509), Vector2(-673, -158), Vector2(-601, 167), Vector2(-549, 188), Vector2(-318, -235)]
@@ -392,7 +393,7 @@ tracks/1/path = NodePath("Saw1/Saw1Shape:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 1.2, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 2.63333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-0.0110334, -0.0110334, -0.0110334, -0.0110334, -0.0110334, -0.0110334]
@@ -404,7 +405,7 @@ tracks/2/path = NodePath("Arm1:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 1.2, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 2.63333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-132, -218), Vector2(-122, -303), Vector2(-423, -141), Vector2(-429, -16), Vector2(-387, 17), Vector2(-132, -218)]
@@ -416,7 +417,7 @@ tracks/3/path = NodePath("Arm1:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 1.2, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 2.63333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-1.08559, -0.547734, -1.49742, -2.15131, -2.32754, -1.08559]
@@ -428,7 +429,7 @@ tracks/4/path = NodePath("Arm2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-126, 206), Vector2(-118, 176), Vector2(-100, 162), Vector2(-53, 142), Vector2(-126, 206)]
@@ -440,7 +441,7 @@ tracks/5/path = NodePath("Arm2:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [-1.93174, -2.21147, -2.5367, -3.19832, -1.93174]
@@ -452,7 +453,7 @@ tracks/6/path = NodePath("Saw2/Saw2Shape:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-308, 214), Vector2(-308, 250), Vector2(-266, 285), Vector2(-112, 326), Vector2(-308, 214)]
@@ -464,7 +465,7 @@ tracks/7/path = NodePath("Saw2/Saw2Shape:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [-0.0110334, -0.0110334, -0.0110334, -0.0110334, -0.0110334]
@@ -476,7 +477,7 @@ tracks/8/path = NodePath("Body:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-12, -42), Vector2(-86, -58), Vector2(-120, -64), Vector2(0, 0)]
@@ -488,7 +489,7 @@ tracks/9/path = NodePath("Body:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"times": PackedFloat32Array(0, 2.03333, 2.23333, 2.43333, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.139848, -0.647835, -0.999921, 0.0]
@@ -981,10 +982,15 @@ one_shot = true
 
 [node name="bounceSfx" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_305wt")
-volume_db = -10.0
+volume_db = -15.0
 pitch_scale = 0.8
-max_polyphony = 8
+max_polyphony = 4
 bus = &"SFX"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_b5puo")
+autoplay = true
+bus = &"Music"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
