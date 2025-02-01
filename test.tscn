@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=103 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -97,6 +97,7 @@
 [ext_resource type="Texture2D" uid="uid://b3lf6juuvkjxw" path="res://base/bg/0081.jpg" id="87_fmcrr"]
 [ext_resource type="Script" path="res://player/heart_container.gd" id="89_f5ftk"]
 [ext_resource type="Texture2D" uid="uid://pc43q7qmjelq" path="res://player/gfx/heart.png" id="90_ml6uh"]
+[ext_resource type="Texture2D" uid="uid://dwyt0nslh4t8b" path="res://base/gfx/wheel_pointer.png" id="98_iygmo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
 animations = [{
@@ -493,18 +494,24 @@ script = ExtResource("9_2wos0")
 boss_name = "Wheel Of Unfortune"
 damageMultiplier = 0.0
 
-[node name="wheelbg" type="Sprite2D" parent="WheelOfUnfortune"]
+[node name="rotate" type="Node2D" parent="WheelOfUnfortune"]
+
+[node name="wheelbg" type="Sprite2D" parent="WheelOfUnfortune/rotate"]
 scale = Vector2(3, 3)
 texture = ExtResource("10_uqdqv")
+
+[node name="Icons" type="Node2D" parent="WheelOfUnfortune/rotate"]
 
 [node name="Icon" type="Sprite2D" parent="WheelOfUnfortune"]
 position = Vector2(2, -136)
 texture = ExtResource("10_6hmjx")
 
+[node name="line" type="Line2D" parent="WheelOfUnfortune"]
+points = PackedVector2Array(0, 0, 0, -182)
+default_color = Color(0, 0, 0, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelOfUnfortune"]
 shape = SubResource("CircleShape2D_s1ep4")
-
-[node name="Icons" type="Node2D" parent="WheelOfUnfortune"]
 
 [node name="clickSfx" type="AudioStreamPlayer" parent="WheelOfUnfortune"]
 stream = SubResource("AudioStreamRandomizer_nwoc5")
@@ -516,8 +523,14 @@ stream = SubResource("AudioStreamRandomizer_6r05k")
 max_polyphony = 16
 bus = &"SFX"
 
+[node name="WheelPointer" type="Sprite2D" parent="WheelOfUnfortune"]
+position = Vector2(0, -201)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("98_iygmo")
+offset = Vector2(-2, 22)
+
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
-[connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="player/HeartContainer" method="_on_player_health_change"]
+[connection signal="health_change" from="player" to="CanvasLayer/hud" method="_on_player_health_change"]
 [connection signal="timeout" from="NextBossTimer" to="." method="_on_next_boss_timer_timeout"]
 [connection signal="locked_in" from="WheelOfUnfortune" to="." method="_on_wheel_of_unfortune_locked_in"]

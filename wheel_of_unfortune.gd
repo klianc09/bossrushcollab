@@ -14,8 +14,13 @@ var list_of_bosses = []
 var wheel_segments
 var current_segment = 0
 
+var pointer_wiggle = 0.0
+
 @onready
 var anchor = position
+
+@onready
+var iconsContainer = $rotate/Icons
 
 ## The wheel stopped spinning and has selected the next boss
 signal locked_in(boss: Enemy)
@@ -44,7 +49,8 @@ func setup_wheel(list_of_bosses):
 	self.list_of_bosses = list_of_bosses
 	wheel_segments = {}
 	$Icon.visible = true
-	for node in $Icons.get_children():
+	$line.visible = true
+	for node in iconsContainer.get_children():
 		node.queue_free()
 	var i = 0
 	for boss in list_of_bosses:
@@ -56,10 +62,14 @@ func setup_wheel(list_of_bosses):
 			boss_icon = load("res://icon.svg")
 		icon.texture = boss_icon
 		icon.rotation = radians
-		$Icons.add_child(icon)
+		iconsContainer.add_child(icon)
 		wheel_segments[boss] = radians
 		i += 1
+		var line = $line.duplicate()
+		line.rotation = deg_to_rad((i+0.5) * 360.0 / len(list_of_bosses))
+		iconsContainer.add_child(line)
 	$Icon.visible = false
+	$line.visible = false
 	has_been_pushed = false
 	locked = false
 
@@ -70,15 +80,20 @@ func _process(delta: float) -> void:
 	rotate_speed = move_toward(rotate_speed, 0, rotate_slowdown * delta)
 	rotate_speed *= 1 / (1 + rotate_friction * delta)
 	var halfSegmentAngle = deg_to_rad(180.0 / len(list_of_bosses))
-	rotation += rotate_speed * delta
-	var new_segment = (-rotation - halfSegmentAngle) / (halfSegmentAngle * 2)
+	$rotate.rotation += rotate_speed * delta
+	var new_segment = (-$rotate.rotation - halfSegmentAngle) / (halfSegmentAngle * 2)
 	new_segment = posmod(new_segment, len(list_of_bosses))
 	if current_segment != new_segment:
 		$clickSfx.play()
+		if (pointer_wiggle <= 0):
+			pointer_wiggle = 1
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "pointer_wiggle", 0.0, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD) # for some reason this tween does not work as I want it to???
 	current_segment = new_segment
 	if rotate_speed <= 0 and has_been_pushed and not locked:
 		locked = true
 		locked_in.emit(list_of_bosses[current_segment])
+	$WheelPointer.rotation = -pointer_wiggle
 
 func damage(amount):
 	if locked or invincible:
