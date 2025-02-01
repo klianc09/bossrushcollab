@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 	$rotate.rotation += rotate_speed * delta
 	var new_segment = (-$rotate.rotation - halfSegmentAngle) / (halfSegmentAngle * 2)
 	new_segment = posmod(new_segment, len(list_of_bosses))
-	if current_segment != new_segment:
+	if current_segment != new_segment and not locked:
 		$clickSfx.play()
 		if (pointer_wiggle <= 0):
 			pointer_wiggle = 1.0

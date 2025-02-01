@@ -425,6 +425,7 @@ offset_right = 687.0
 offset_bottom = 27.0
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer/hud"]
+visible = false
 layout_mode = 0
 offset_left = 15.0
 offset_top = 498.0
@@ -435,6 +436,7 @@ value = 3.0
 show_percentage = false
 
 [node name="ChargeBar" type="ProgressBar" parent="CanvasLayer/hud"]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 465.0

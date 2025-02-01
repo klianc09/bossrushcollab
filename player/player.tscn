@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dffgnnw8bc6lj"]
+[gd_scene load_steps=15 format=3 uid="uid://dffgnnw8bc6lj"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q4pyb"]
 [ext_resource type="Texture2D" uid="uid://cmwxb2o0xv1wj" path="res://player/gfx/test.png" id="2_8eqy0"]
 [ext_resource type="Texture2D" uid="uid://csshi0oeidt4x" path="res://player/gfx/reticle.png" id="3_3rqfj"]
 [ext_resource type="AudioStream" uid="uid://cybvigh1uo20a" path="res://base/sfx/hurt1.wav" id="4_havn0"]
+[ext_resource type="Texture2D" uid="uid://bbxrjb245yfra" path="res://player/gfx/reticle_charge.png" id="4_ujmnu"]
 [ext_resource type="AudioStream" uid="uid://dm6hwq2ei31h0" path="res://base/sfx/lose1.wav" id="5_oqq4o"]
 [ext_resource type="AudioStream" uid="uid://6ao32yegqcdh" path="res://base/sfx/zap1.wav" id="6_xdxpo"]
 [ext_resource type="AudioStream" uid="uid://bw1mchjytxhjp" path="res://base/sfx/zap2.wav" id="7_rem7a"]
+[ext_resource type="AudioStream" uid="uid://smat2apl2q8a" path="res://base/sfx/click.wav" id="9_08ewx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6kve0"]
 radius = 13.0
@@ -26,6 +28,10 @@ random_pitch = 2.0
 streams_count = 1
 stream_0/stream = ExtResource("7_rem7a")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sif46"]
+streams_count = 1
+stream_0/stream = ExtResource("9_08ewx")
+
 [node name="player" type="Area2D" groups=["player"]]
 position = Vector2(208, 234)
 collision_mask = 12
@@ -39,15 +45,24 @@ shape = SubResource("CircleShape2D_6kve0")
 
 [node name="Reticle" type="Node2D" parent="."]
 position = Vector2(97, -1)
+scale = Vector2(2, 2)
 
 [node name="r1" type="Sprite2D" parent="Reticle"]
 texture_filter = 1
 texture = ExtResource("3_3rqfj")
 
+[node name="indicator" type="Sprite2D" parent="Reticle/r1"]
+position = Vector2(-16, -2)
+texture = ExtResource("4_ujmnu")
+
 [node name="r2" type="Sprite2D" parent="Reticle"]
 texture_filter = 1
 scale = Vector2(1, -1)
 texture = ExtResource("3_3rqfj")
+
+[node name="indicator" type="Sprite2D" parent="Reticle/r2"]
+position = Vector2(-16, -2)
+texture = ExtResource("4_ujmnu")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -66,6 +81,16 @@ bus = &"SFX"
 
 [node name="shotMissileSfx" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_0eqy2")
+bus = &"SFX"
+
+[node name="fullyChargedSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_sif46")
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="chargeEmptySfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_sif46")
+pitch_scale = 1.5
 bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

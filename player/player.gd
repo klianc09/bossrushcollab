@@ -37,6 +37,9 @@ var invulnerabilityTimer = 0
 
 var dead = false
 
+var missileChargeReticles1 = []
+var missileChargeReticles2 = []
+
 ## All outgoing damage is multiplied by this. Mostly useful for testing.
 @export var damageMultiplier = 1
 
@@ -48,6 +51,18 @@ signal charge_change(node: Player)
 func _ready() -> void:
 	health_change.emit(self)
 	charge_change.emit(self)
+	var maxMissiles = maxCharge / (chargeConversationRate * dischargeRate)
+	for i in range(maxMissiles):
+		var r1 = $Reticle/r1/indicator.duplicate()
+		r1.position += i * Vector2(3, 0)
+		missileChargeReticles1.append(r1)
+		$Reticle/r1.add_child(r1)
+		var r2 = $Reticle/r2/indicator.duplicate()
+		r2.position += i * Vector2(3, 0)
+		missileChargeReticles2.append(r2)
+		$Reticle/r2.add_child(r2)
+	$Reticle/r1/indicator.visible = false
+	$Reticle/r2/indicator.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
@@ -73,7 +88,10 @@ func _process(delta: float) -> void:
 	var currentMoveSpeed = moveSpeed
 	if !Input.is_action_pressed("action_focus"):
 		currentMoveSpeed = focusSpeed
+		var notFullyCharged = chargeTimer < maxCharge
 		chargeTimer += delta * chargeRate
+		if notFullyCharged and chargeTimer >= maxCharge:
+			$fullyChargedSfx.play()
 		chargeTimer = min(chargeTimer, maxCharge)
 		chargeDischarge = chargeConversationRate # guaranteed missiles at start of barrage
 		charge_change.emit(self)
@@ -89,6 +107,7 @@ func _process(delta: float) -> void:
 				spawnMissile(position, Vector2(missileSpeed, 0).rotated(deg_to_rad(randf_range(-spreadM2, spreadM2) - spreadM)))
 			if chargeTimer <= 0:
 				chargeTimer = 0
+				$chargeEmptySfx.play()
 				# guaranteed missiles at end of barrage
 				# spawnMissile(position, Vector2(missileSpeed, 0).rotated(deg_to_rad(spreadM)))
 				# spawnMissile(position, Vector2(missileSpeed, 0).rotated(deg_to_rad(-spreadM)))
@@ -102,10 +121,21 @@ func _process(delta: float) -> void:
 				spawnBullet(position, fireDir)
 				$shotSfx.play()
 				alternate = -alternate
-			
+	
 	position += input_vector * delta * currentMoveSpeed
 	#clamp to screen
 	position = position.clamp(Vector2.ZERO, Singleton.viewportSize)
+	
+	var currentMissiles = ceil(chargeTimer / (chargeConversationRate * dischargeRate))
+	var fullyCharged = chargeTimer >= maxCharge
+	for i in range(len(missileChargeReticles1)):
+		missileChargeReticles1[i].visible = (i+1) < currentMissiles
+		missileChargeReticles2[i].visible = (i+1) < currentMissiles
+		var color = Color.WHITE
+		if fullyCharged:
+			color = Color.HOT_PINK
+		missileChargeReticles1[i].modulate = color
+		missileChargeReticles2[i].modulate = color
 	
 	invulnerabilityTimer -= delta
 	if invulnerabilityTimer > 0:
