@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bey7kjnoav07j" path="res://boss/crusher/gfx/sawblade.png" id="3_o8ju3"]
 [ext_resource type="Script" path="res://base/burst.gd" id="4_hkamk"]
 [ext_resource type="Script" path="res://boss/crusher/spin.gd" id="5_c2whu"]
-[ext_resource type="AudioStream" uid="uid://4o1n35l7uf36" path="res://base/sfx/buzzsaw2.wav" id="8_jp257"]
+[ext_resource type="AudioStream" uid="uid://cneg7txjk0mq8" path="res://base/sfx/buzzsaw2.ogg" id="8_6q41q"]
 [ext_resource type="AudioStream" uid="uid://dwlih7kjt8u3u" path="res://boss/crusher/sfx/DR SFX DiscBounce1.wav" id="9_edp2j"]
 [ext_resource type="AudioStream" uid="uid://c8m1pbmkq7hm1" path="res://boss/crusher/sfx/DR SFX DiscBounce2.wav" id="10_ixbvq"]
 [ext_resource type="AudioStream" uid="uid://3lewf5bvqmmi" path="res://boss/crusher/sfx/DR SFX DiscBounce3.wav" id="11_lrevp"]
@@ -846,10 +846,10 @@ stream_3/stream = ExtResource("12_u6btw")
 [node name="Area2D" type="Area2D" groups=["enemy"]]
 position = Vector2(952, 270)
 script = ExtResource("1_yjg0c")
-boss_name = "Hackfleischhassender Zerhacker"
+boss_name = "Hackfleisch Hassender Zerhacker"
 boss_icon = ExtResource("3_o8ju3")
 boss_bg_color = Color(0.987817, 0.562828, 0.679976, 1)
-maxhp = 300.0
+maxhp = 240.0
 boss = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -878,12 +878,14 @@ texture = ExtResource("2_8xtdl")
 metadata/_edit_lock_ = true
 
 [node name="Turret3" parent="Arm2" instance=ExtResource("3_n84di")]
+visible = false
 position = Vector2(-4.88242, -69.1821)
 rotation = 1.51682
 active = false
 burst_data = SubResource("Resource_3nki3")
 
 [node name="Turret4" parent="Arm2" instance=ExtResource("3_n84di")]
+visible = false
 position = Vector2(-2.00107, 59.1016)
 rotation = 1.51682
 active = false
@@ -901,11 +903,13 @@ texture = ExtResource("2_8xtdl")
 metadata/_edit_lock_ = true
 
 [node name="Turret" parent="Body" instance=ExtResource("3_n84di")]
+visible = false
 position = Vector2(5.74994, -67.9407)
 rotation = -1.58906
 active = false
 
 [node name="LaserTurret" parent="Body" instance=ExtResource("3_n84di")]
+visible = false
 position = Vector2(-45.9862, -1.50732)
 rotation = -1.58906
 active = false
@@ -913,6 +917,7 @@ burst_data = SubResource("Resource_gwkkj")
 player_aimed = true
 
 [node name="Turret2" parent="Body" instance=ExtResource("3_n84di")]
+visible = false
 position = Vector2(7.40371, 54.085)
 rotation = -1.58906
 active = false
@@ -938,7 +943,7 @@ script = ExtResource("5_c2whu")
 metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Saw1/Saw1Shape"]
-stream = ExtResource("8_jp257")
+stream = ExtResource("8_6q41q")
 autoplay = true
 bus = &"SFX"
 
@@ -965,7 +970,7 @@ metadata/_edit_lock_ = true
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Saw2/Saw2Shape"]
 position = Vector2(-5.04547, -449.083)
 scale = Vector2(0.999899, 1.05484)
-stream = ExtResource("8_jp257")
+stream = ExtResource("8_6q41q")
 volume_db = -15.0
 autoplay = true
 bus = &"SFX"

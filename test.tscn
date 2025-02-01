@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=108 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -97,6 +97,11 @@
 [ext_resource type="Texture2D" uid="uid://b3lf6juuvkjxw" path="res://base/bg/0081.jpg" id="87_fmcrr"]
 [ext_resource type="Script" path="res://player/heart_container.gd" id="89_f5ftk"]
 [ext_resource type="Texture2D" uid="uid://pc43q7qmjelq" path="res://player/gfx/heart.png" id="90_ml6uh"]
+[ext_resource type="Texture2D" uid="uid://cgi6p6rrk574a" path="res://base/gfx/boss_hp_empty.png" id="93_2xrya"]
+[ext_resource type="Texture2D" uid="uid://r1w0q2np7n0s" path="res://base/gfx/boss_hp_over.png" id="94_6qnll"]
+[ext_resource type="Texture2D" uid="uid://c155by58vuxv" path="res://base/gfx/boss_hp_full.png" id="95_g4vd7"]
+[ext_resource type="Theme" uid="uid://curncucwwts4b" path="res://ui_theme.tres" id="96_gh3iu"]
+[ext_resource type="Texture2D" uid="uid://bf0i5keerdndq" path="res://base/gfx/hazard_stripe_v2.png" id="96_qr4db"]
 [ext_resource type="Texture2D" uid="uid://dwyt0nslh4t8b" path="res://base/gfx/wheel_pointer.png" id="98_iygmo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
@@ -414,15 +419,40 @@ script = ExtResource("7_ifq5u")
 
 [node name="hud" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_yj37d")
 
-[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer/hud"]
-layout_mode = 0
-offset_right = 687.0
-offset_bottom = 27.0
+[node name="BossHealthBar1" type="TextureProgressBar" parent="CanvasLayer/hud"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture_under = ExtResource("93_2xrya")
+texture_over = ExtResource("94_6qnll")
+texture_progress = ExtResource("95_g4vd7")
+texture_progress_offset = Vector2(38, 0)
+tint_progress = Color(10, 10, 10, 1)
+
+[node name="BossHealthBar2" type="TextureProgressBar" parent="CanvasLayer/hud"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture_over = ExtResource("94_6qnll")
+texture_progress = ExtResource("95_g4vd7")
+texture_progress_offset = Vector2(38, 0)
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer/hud"]
 visible = false
@@ -442,25 +472,6 @@ offset_left = 20.0
 offset_top = 465.0
 offset_right = 120.0
 offset_bottom = 492.0
-
-[node name="ApproachingLabel" type="Label" parent="CanvasLayer/hud"]
-visible = false
-layout_mode = 0
-offset_left = 463.0
-offset_top = 160.0
-offset_right = 503.0
-offset_bottom = 183.0
-text = "Boss Approaching:"
-
-[node name="BossNameLabel" type="Label" parent="CanvasLayer/hud"]
-visible = false
-layout_mode = 0
-offset_left = 447.0
-offset_top = 195.0
-offset_right = 621.0
-offset_bottom = 218.0
-text = "<insert name here>"
-horizontal_alignment = 1
 
 [node name="SuccessLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
@@ -490,8 +501,52 @@ offset_right = 682.0
 offset_bottom = 443.0
 text = "You defeated ALL bosses, good job!"
 
+[node name="TopStrip" type="TextureRect" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_left = -32.0
+offset_top = 64.0
+offset_right = 993.0
+offset_bottom = 140.0
+pivot_offset = Vector2(0, 45)
+texture = ExtResource("96_qr4db")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ApproachingLabel" type="Label" parent="CanvasLayer/hud/TopStrip"]
+layout_mode = 0
+offset_left = 996.0
+offset_top = 23.0
+offset_right = 1259.0
+offset_bottom = 53.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 30
+text = "Boss Approaching:"
+
+[node name="TopStrip2" type="TextureRect" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_left = -32.0
+offset_top = 424.0
+offset_right = 993.0
+offset_bottom = 500.0
+pivot_offset = Vector2(0, 45)
+texture = ExtResource("96_qr4db")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ApproachingLabel" type="Label" parent="CanvasLayer/hud/TopStrip2"]
+layout_mode = 0
+offset_left = 996.0
+offset_top = 23.0
+offset_right = 1259.0
+offset_bottom = 53.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 30
+text = "Boss Approaching: "
+
 [node name="WheelOfUnfortune" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(606, 262)
+position = Vector2(753, 268)
 script = ExtResource("9_2wos0")
 boss_name = "Wheel Of Unfortune"
 damageMultiplier = 0.0
