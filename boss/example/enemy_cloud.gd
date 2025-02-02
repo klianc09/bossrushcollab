@@ -9,7 +9,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_timer_2_timeout() -> void:
-	var enemy = load("res://boss/example/cloud_enemy.tscn").instantiate()
+	var enemy = load("res://boss/example/cloud_enemy_2.tscn").instantiate()
 	var screenWidth = Singleton.viewportSize.x
 	enemy.position = Vector2(randf_range(screenWidth - 200, screenWidth), randf_range(0, Singleton.viewportSize.y))
 	enemy.maxhp = 8

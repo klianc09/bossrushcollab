@@ -18,6 +18,8 @@ func _process(delta: float) -> void:
 	$BossHealthBar1.tint_progress = hp_highlight_color
 
 func _on_boss_spawned(boss: Enemy):
+	$"../../music".stop()
+	$"../../warningSfx".play()
 	$Instructions.visible = false
 	var labelypos = 18
 	$TopStrip.visible = true
@@ -53,6 +55,7 @@ func endOfSpawnSequence():
 
 
 func _on_boss_defeated():
+	$"../../music".play()
 	$SuccessLabel.text = "You defeated:\n" + Singleton.bossNode.boss_name + "!"
 	$SuccessLabel.visible = true
 	var tween = get_tree().create_tween()

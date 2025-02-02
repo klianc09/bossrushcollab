@@ -100,6 +100,7 @@ func _process(delta: float):
 			hit = true
 		if hit:
 			Singleton.screenshake(12)
+			$impactSfx.play()
 
 func onHealthFullyLost():
 	if phase != P.OUTRO:

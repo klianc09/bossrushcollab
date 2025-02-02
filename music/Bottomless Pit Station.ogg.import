@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wrin57rmhbrr"
+path="res://.godot/imported/Bottomless Pit Station.ogg-f2c30542da0a94bcba8431bcb2dd232a.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Bottomless Pit Station.ogg"
+dest_files=["res://.godot/imported/Bottomless Pit Station.ogg-f2c30542da0a94bcba8431bcb2dd232a.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

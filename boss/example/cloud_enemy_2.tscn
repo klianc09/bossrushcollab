@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://du04y5u8cx5ta"]
+
+[ext_resource type="PackedScene" uid="uid://c15srej0y6td5" path="res://boss/example/cloud_enemy.tscn" id="1_wdaky"]
+[ext_resource type="Script" path="res://base/burst.gd" id="2_wvn3x"]
+
+[sub_resource type="Resource" id="Resource_8cfwo"]
+script = ExtResource("2_wvn3x")
+bullet_type = "res://boss/example/homing_bullet.tscn"
+bullet_speed = 250.0
+bullet_inaccuracy = 0.0
+shot_inaccuracy = 0.0
+full_shot_spread = 160.0
+bullets_per_shot = 5
+shots_in_burst = 1
+time_between_shots = 0.1
+time_between_bursts = 1.0
+burst_count_limit = 1
+
+[node name="enemy" instance=ExtResource("1_wdaky")]
+
+[node name="DeathBullet" parent="." index="2"]
+burst_data = SubResource("Resource_8cfwo")

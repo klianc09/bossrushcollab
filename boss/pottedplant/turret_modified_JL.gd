@@ -75,5 +75,6 @@ func shoot() -> void:
 			bullet.global_rotation_degrees = global_rotation_degrees
 		else:
 			Singleton.mainNode.add_child(bullet)
+	Singleton.playSfx("enemyShotSfx")
 	var particle = Singleton.createParticle("res://base/particle.tscn")
 	particle.position = global_position

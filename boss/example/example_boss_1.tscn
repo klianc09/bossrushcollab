@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfvwu0wukba6w"]
+[gd_scene load_steps=13 format=3 uid="uid://dfvwu0wukba6w"]
 
 [ext_resource type="Script" path="res://boss/example/example_boss_1.gd" id="1_vplxl"]
-[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_s7uk1"]
+[ext_resource type="Texture2D" uid="uid://b0tfqg8w8hq1a" path="res://boss/example/wing.png" id="2_4jlqs"]
+[ext_resource type="Texture2D" uid="uid://yo4thvtxwv67" path="res://boss/example/batman.png" id="2_kejye"]
 [ext_resource type="Script" path="res://base/enemy.gd" id="3_h7kon"]
 [ext_resource type="Script" path="res://base/turret.gd" id="4_806g1"]
+[ext_resource type="Texture2D" uid="uid://bp5epk1ks8cxg" path="res://boss/example/head.png" id="4_n5g0y"]
 [ext_resource type="Resource" uid="uid://bnbyluvtv2bds" path="res://base/burst_example.tres" id="5_l2mtf"]
 [ext_resource type="Script" path="res://base/burst.gd" id="6_bwexw"]
 [ext_resource type="AudioStream" uid="uid://smpljv385yn3" path="res://music/mucke.ogg" id="7_v6clt"]
@@ -12,7 +14,7 @@
 size = Vector2(56, 62)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pk2c"]
-size = Vector2(125, 124)
+size = Vector2(81, 124)
 
 [sub_resource type="Resource" id="Resource_url4b"]
 script = ExtResource("6_bwexw")
@@ -30,7 +32,8 @@ burst_count_limit = -1
 [node name="ExampleBoss1" type="Area2D" groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_vplxl")
-boss_name = "Perfectly Boring Example Boss"
+boss_name = "Boring Bat"
+boss_icon = ExtResource("2_kejye")
 boss_bg_color = Color(0.656795, 0.906433, 0.864752, 1)
 maxhp = 100.0
 validTarget = false
@@ -38,33 +41,33 @@ boss = true
 
 [node name="Sprite2" type="Sprite2D" parent="." groups=["enemy"]]
 position = Vector2(-1, -104)
-texture = ExtResource("2_s7uk1")
+texture = ExtResource("2_4jlqs")
 
 [node name="Sprite3" type="Sprite2D" parent="." groups=["enemy"]]
 position = Vector2(-1, 104)
-texture = ExtResource("2_s7uk1")
+scale = Vector2(1, -1)
+texture = ExtResource("2_4jlqs")
 
 [node name="CritArea" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(-43, 1)
+position = Vector2(-10, -1)
 collision_layer = 4
 script = ExtResource("3_h7kon")
 multipart = true
 damageMultiplier = 2.0
 
 [node name="Sprite" type="Sprite2D" parent="CritArea"]
-modulate = Color(1, 0, 1, 1)
 scale = Vector2(0.601563, 0.59375)
-texture = ExtResource("2_s7uk1")
+texture = ExtResource("4_n5g0y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CritArea"]
 shape = SubResource("RectangleShape2D_yn6ls")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, -107)
+position = Vector2(-8.5, -107)
 shape = SubResource("RectangleShape2D_5pk2c")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 103)
+position = Vector2(-9, 103)
 shape = SubResource("RectangleShape2D_5pk2c")
 
 [node name="Turret1" type="Node2D" parent="."]

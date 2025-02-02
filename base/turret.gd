@@ -72,5 +72,6 @@ func shoot() -> void:
 		bullet.bulletSpeed = burst_data.bullet_speed
 		bullet.rotation = bullet.forward.angle_to(actual_direction)
 		Singleton.mainNode.add_child(bullet)
+	Singleton.playSfx("enemyShotSfx")
 	var particle = Singleton.createParticle("res://base/particle.tscn")
 	particle.position = global_position

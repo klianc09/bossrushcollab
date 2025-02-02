@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=115 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -105,6 +105,9 @@
 [ext_resource type="Script" path="res://pause_menu.gd" id="98_idsex"]
 [ext_resource type="Texture2D" uid="uid://dwyt0nslh4t8b" path="res://base/gfx/wheel_pointer.png" id="98_iygmo"]
 [ext_resource type="AudioStream" uid="uid://ce2mqm8r1mla7" path="res://base/sfx/hurt2.wav" id="105_8uytc"]
+[ext_resource type="AudioStream" uid="uid://cj7qu8jgti52i" path="res://base/sfx/enemy_shot.wav" id="106_8ceb0"]
+[ext_resource type="AudioStream" uid="uid://wrin57rmhbrr" path="res://music/Bottomless Pit Station.ogg" id="106_q6bcs"]
+[ext_resource type="AudioStream" uid="uid://yd01xftrkqs1" path="res://base/sfx/upgrade2.wav" id="108_tpl22"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
 animations = [{
@@ -374,6 +377,11 @@ stream_0/stream = ExtResource("14_rnu7w")
 random_pitch = 2.0
 streams_count = 1
 stream_0/stream = ExtResource("105_8uytc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f4keu"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("106_8ceb0")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
@@ -724,6 +732,21 @@ offset = Vector2(-2, 22)
 stream = SubResource("AudioStreamRandomizer_hd2mk")
 volume_db = -8.0
 max_polyphony = 4
+bus = &"SFX"
+
+[node name="enemyShotSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_f4keu")
+volume_db = -4.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("106_q6bcs")
+autoplay = true
+bus = &"Music"
+
+[node name="warningSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("108_tpl22")
 bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]

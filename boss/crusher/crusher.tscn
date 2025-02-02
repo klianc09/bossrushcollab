@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://o7nbdjn6d78k"]
+[gd_scene load_steps=29 format=3 uid="uid://o7nbdjn6d78k"]
 
 [ext_resource type="Script" path="res://boss/crusher/crusher.gd" id="1_yjg0c"]
 [ext_resource type="Texture2D" uid="uid://by8rax288ls08" path="res://boss/crusher/gfx/bodypart.png" id="2_8xtdl"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://3lewf5bvqmmi" path="res://boss/crusher/sfx/DR SFX DiscBounce3.wav" id="11_lrevp"]
 [ext_resource type="AudioStream" uid="uid://ir1rgmjkekd" path="res://boss/crusher/sfx/DR SFX DiscBounce4.wav" id="12_u6btw"]
 [ext_resource type="AudioStream" uid="uid://bd0qflx6urqm7" path="res://music/JohnLee_Cooper_-_dance_shit_idk.ogg" id="13_b5puo"]
+[ext_resource type="AudioStream" uid="uid://htqefcb1tnoj" path="res://base/sfx/swishes6.ogg" id="14_wgjni"]
+[ext_resource type="AudioStream" uid="uid://cp2ac8wts8r5x" path="res://base/sfx/swishes7.ogg" id="15_de7p7"]
+[ext_resource type="AudioStream" uid="uid://bsg0bpsnt77de" path="res://base/sfx/swishes8.ogg" id="16_l7sju"]
 
 [sub_resource type="Animation" id="Animation_i7bf5"]
 resource_name = "Charge"
@@ -494,6 +497,20 @@ tracks/9/keys = {
 "update": 0,
 "values": [0.0, -0.139848, -0.647835, -0.999921, 0.0]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("swishSfx")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_l64xg"]
 resource_name = "Stab"
@@ -844,6 +861,13 @@ stream_1/stream = ExtResource("10_ixbvq")
 stream_2/stream = ExtResource("11_lrevp")
 stream_3/stream = ExtResource("12_u6btw")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ummu7"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("14_wgjni")
+stream_1/stream = ExtResource("15_de7p7")
+stream_2/stream = ExtResource("16_l7sju")
+
 [node name="Area2D" type="Area2D" groups=["enemy"]]
 position = Vector2(952, 270)
 script = ExtResource("1_yjg0c")
@@ -991,6 +1015,10 @@ bus = &"SFX"
 stream = ExtResource("13_b5puo")
 autoplay = true
 bus = &"Music"
+
+[node name="swishSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ummu7")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

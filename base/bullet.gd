@@ -15,7 +15,7 @@ var timer = 0
 ## If homing: The node group among which this bullet will search for targets.
 @export var homing_group = "enemy"
 ## If homing: The speed at which this bullet will turn toward its target. [degrees per second]
-@export var rotationSpeed = 3
+@export var rotationSpeed = 3.0
 ## The acceleration rate of this bullet. [pixels per second²]
 @export var speedup = 0
 var target : Node2D

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cho8sjrsq48nf"]
+[gd_scene load_steps=18 format=3 uid="uid://cho8sjrsq48nf"]
 
 [ext_resource type="Script" path="res://base/enemy.gd" id="1_1cjo3"]
 [ext_resource type="Texture2D" uid="uid://bd5rwwwkcgbsw" path="res://boss/beyblade/gfx/core.png" id="1_hlirn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://base/burst.gd" id="5_y6j3o"]
 [ext_resource type="Texture2D" uid="uid://35k5ltulbx8p" path="res://boss/beyblade/gfx/gun.png" id="7_8nkhq"]
 [ext_resource type="AudioStream" uid="uid://bjk5o226o655l" path="res://music/JohnLee_Cooper_-_gray_potion_to_kill_ants_2023-04-30_11_34.ogg" id="8_3dicq"]
+[ext_resource type="AudioStream" uid="uid://cy6o6lrnpke82" path="res://base/sfx/impact.wav" id="10_i7v2j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3bo00"]
 radius = 46.0435
@@ -47,6 +48,11 @@ shots_in_burst = 6
 time_between_shots = 0.1
 time_between_bursts = 1.0
 burst_count_limit = 2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cmeiw"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("10_i7v2j")
 
 [node name="Beyblade" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_wcmc1")
@@ -174,3 +180,7 @@ aim_direction = Vector2(0, -1)
 stream = ExtResource("8_3dicq")
 autoplay = true
 bus = &"Music"
+
+[node name="impactSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_cmeiw")
+bus = &"SFX"

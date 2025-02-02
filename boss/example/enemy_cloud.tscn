@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl6sm6ilarwmw"]
 
 [ext_resource type="Script" path="res://boss/example/enemy_cloud.gd" id="1_o0rhy"]
-[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_gwjtn"]
+[ext_resource type="Texture2D" uid="uid://cmd7bi6t2tbac" path="res://icon_evil.png" id="2_7snvd"]
 [ext_resource type="AudioStream" uid="uid://dqne464kkf77p" path="res://music/mucke_bass_boosted.ogg" id="3_0o0mi"]
 
 [node name="cloudboss" type="Area2D"]
 script = ExtResource("1_o0rhy")
 boss_name = "Scary Godot Icon Cloud"
-boss_icon = ExtResource("2_gwjtn")
+boss_icon = ExtResource("2_7snvd")
 boss_bg_color = Color(0.45864, 0.93126, 0.579687, 1)
 maxhp = 100.0
 validTarget = false

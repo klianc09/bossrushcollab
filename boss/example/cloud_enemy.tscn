@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c15srej0y6td5"]
 
 [ext_resource type="Script" path="res://boss/example/cloud_enemy.gd" id="1_l48we"]
-[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="2_tct1g"]
+[ext_resource type="Texture2D" uid="uid://cmd7bi6t2tbac" path="res://icon_evil.png" id="2_lgmcj"]
 [ext_resource type="Script" path="res://base/turret.gd" id="3_a1ysi"]
 [ext_resource type="Script" path="res://base/burst.gd" id="4_jedga"]
 
@@ -28,7 +28,7 @@ destroyedOnContact = true
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_tct1g")
+texture = ExtResource("2_lgmcj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_j6egh")

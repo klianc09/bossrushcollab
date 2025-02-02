@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckwu0sxrhj20b"]
+[gd_scene load_steps=6 format=3 uid="uid://ckwu0sxrhj20b"]
 
 [ext_resource type="Script" path="res://title.gd" id="1_atash"]
 [ext_resource type="Texture2D" uid="uid://b04gmbmh1u5lp" path="res://base/title_screen.png" id="1_iflci"]
 [ext_resource type="Theme" uid="uid://curncucwwts4b" path="res://ui_theme.tres" id="2_p4p0u"]
 [ext_resource type="AudioStream" uid="uid://bf4d7354tj3jf" path="res://base/sfx/start.wav" id="4_3oybq"]
+[ext_resource type="AudioStream" uid="uid://dq5xj21l8r5vd" path="res://music/JohnLee_Cooper_-_steel_tongue.ogg" id="5_na4od"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -119,3 +120,8 @@ Some sounds made with
 
 Mady possible by
   Godot"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_na4od")
+autoplay = true
+bus = &"Music"
