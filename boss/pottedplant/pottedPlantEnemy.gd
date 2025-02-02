@@ -32,7 +32,6 @@ func onHealthFullyLost() -> void:
 		laserCooldownTime = 2
 		laserCooldownTimer = laserCooldownTime
 		$FlowerTimer.stop()
-		print("started death")
 		$OutroTimer.start()
 		$"Main Sprite".texture=DeathSprite
 		$Flowers_Pink.hide()
@@ -191,7 +190,7 @@ func _normalGuns():
 #Singleton.screenDirectionalKnockback(Vector2(20, 0))
 
 func _on_outro_timer_timeout() -> void:
-	print("boss beat")
+	Singleton.screenDirectionalKnockback(Vector2(0, 10))
 	Singleton.bossFightOver()
 	queue_free()
 

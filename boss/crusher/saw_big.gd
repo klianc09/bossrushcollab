@@ -5,6 +5,11 @@ var velocity = Vector2(0, -moveSpeed)
 var radius = 0
 var rotateSpeed = 30
 
+func _ready() -> void:
+	scale = Vector2(0, 0)
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1), 2)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	super(delta)

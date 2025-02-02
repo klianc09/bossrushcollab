@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://mojmo8rgwryg"]
 
-[ext_resource type="Texture2D" uid="uid://cdgr20cnd6afm" path="res://icon.svg" id="1_3kebh"]
+[ext_resource type="Texture2D" uid="uid://c04ghicvyx2rt" path="res://base/gfx/bullet1.png" id="2_e8x5c"]
 [ext_resource type="Script" path="res://base/bullet.gd" id="2_fu2gb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ivej"]
-size = Vector2(117, 20)
+size = Vector2(44, 20)
 
 [node name="bullet" type="Area2D" groups=["p_bullet"]]
 z_index = -2
@@ -15,10 +15,8 @@ enemy_team = false
 forward = Vector2(1, 0)
 
 [node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(1, 0.117647, 1, 1)
-scale = Vector2(1, 0.2)
-texture = ExtResource("1_3kebh")
+texture = ExtResource("2_e8x5c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_8ivej")

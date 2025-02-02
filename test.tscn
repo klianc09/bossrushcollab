@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://bdyxuh1334c7a"]
+[gd_scene load_steps=111 format=3 uid="uid://bdyxuh1334c7a"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_de0hb"]
 [ext_resource type="PackedScene" uid="uid://dffgnnw8bc6lj" path="res://player/player.tscn" id="2_1jh4n"]
@@ -104,6 +104,7 @@
 [ext_resource type="Texture2D" uid="uid://bf0i5keerdndq" path="res://base/gfx/hazard_stripe_v2.png" id="96_qr4db"]
 [ext_resource type="Script" path="res://pause_menu.gd" id="98_idsex"]
 [ext_resource type="Texture2D" uid="uid://dwyt0nslh4t8b" path="res://base/gfx/wheel_pointer.png" id="98_iygmo"]
+[ext_resource type="AudioStream" uid="uid://ce2mqm8r1mla7" path="res://base/sfx/hurt2.wav" id="105_8uytc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ropve"]
 animations = [{
@@ -369,6 +370,11 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("14_rnu7w")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hd2mk"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("105_8uytc")
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_de0hb")
 bosses = Array[PackedScene]([ExtResource("6_mstoc"), ExtResource("5_16l7w"), ExtResource("4_74lfw"), ExtResource("5_c27a8"), ExtResource("5_4xus3")])
@@ -604,9 +610,10 @@ You realize...
 
 
 
+
 Well done, proud of you!
 
-Thanks for playing."
+Thanks for playing!"
 horizontal_alignment = 1
 
 [node name="FinalScore" type="Label" parent="CanvasLayer/hud"]
@@ -691,7 +698,7 @@ position = Vector2(2, -136)
 texture = ExtResource("10_6hmjx")
 
 [node name="line" type="Line2D" parent="WheelOfUnfortune"]
-points = PackedVector2Array(0, 0, 0, -182)
+points = PackedVector2Array(0, 0, 0, -190)
 default_color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelOfUnfortune"]
@@ -712,6 +719,12 @@ position = Vector2(0, -201)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("98_iygmo")
 offset = Vector2(-2, 22)
+
+[node name="enemyHurtSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_hd2mk")
+volume_db = -8.0
+max_polyphony = 4
+bus = &"SFX"
 
 [connection signal="charge_change" from="player" to="CanvasLayer/hud" method="_on_player_charge_change"]
 [connection signal="health_change" from="player" to="player/HeartContainer" method="_on_player_health_change"]

@@ -1,5 +1,10 @@
 extends Enemy
 signal dead
+
+func _ready() -> void:
+	super()
+	enemyHurtSfx = ""
+
 func onHealthFullyLost() -> void:
 	
 	dead.emit()

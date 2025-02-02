@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cho8sjrsq48nf"]
+[gd_scene load_steps=16 format=3 uid="uid://cho8sjrsq48nf"]
 
 [ext_resource type="Script" path="res://base/enemy.gd" id="1_1cjo3"]
 [ext_resource type="Texture2D" uid="uid://bd5rwwwkcgbsw" path="res://boss/beyblade/gfx/core.png" id="1_hlirn"]
 [ext_resource type="Script" path="res://boss/beyblade/beyblade.gd" id="1_wcmc1"]
+[ext_resource type="Texture2D" uid="uid://d1g5fg5mqtarx" path="res://boss/beyblade/gfx/icon.png" id="2_snbgo"]
 [ext_resource type="Texture2D" uid="uid://dalulrnqhmnli" path="res://boss/beyblade/gfx/blade.png" id="2_tecif"]
 [ext_resource type="Script" path="res://base/turret.gd" id="4_vgl2f"]
 [ext_resource type="Script" path="res://base/burst.gd" id="5_y6j3o"]
@@ -50,7 +51,7 @@ burst_count_limit = 2
 [node name="Beyblade" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_wcmc1")
 boss_name = "Oversized Beyblade"
-boss_icon = ExtResource("1_hlirn")
+boss_icon = ExtResource("2_snbgo")
 boss_bg_color = Color(0.138031, 0.000183065, 0.374785, 1)
 maxhp = 600.0
 boss = true

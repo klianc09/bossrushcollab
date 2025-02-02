@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cisjfcklwbce0"]
+[gd_scene load_steps=8 format=3 uid="uid://cisjfcklwbce0"]
 
 [ext_resource type="PackedScene" uid="uid://mojmo8rgwryg" path="res://player/bullet.tscn" id="1_j4dbw"]
 [ext_resource type="Texture2D" uid="uid://dha5y6gu5hj8e" path="res://player/gfx/ex_smoke.png" id="2_7sshd"]
 [ext_resource type="Script" path="res://player/missile.gd" id="2_pp23q"]
+[ext_resource type="Texture2D" uid="uid://fs21hhg7nelt" path="res://base/gfx/bullet2.png" id="3_kr81j"]
 [ext_resource type="Script" path="res://base/oneshotparticles.gd" id="4_j3ku3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl1xv"]
-size = Vector2(58, 20)
+size = Vector2(25, 14)
 
 [sub_resource type="Gradient" id="Gradient_hslml"]
 
@@ -17,14 +18,14 @@ homing = true
 speedup = -100
 
 [node name="sprite" parent="." index="0"]
-modulate = Color(0, 0.774915, 0.705017, 1)
-scale = Vector2(0.5, 0.2)
+texture = ExtResource("3_kr81j")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 0)
+position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_sl1xv")
 
 [node name="smoketrail" type="CPUParticles2D" parent="." index="2"]
+z_index = -4
 position = Vector2(-29, 0)
 lifetime = 0.2
 texture = ExtResource("2_7sshd")

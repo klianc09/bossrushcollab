@@ -17,6 +17,7 @@ func _enter_tree() -> void:
 	Singleton.mainNode = self
 
 func _ready() -> void:
+	Singleton.register_sfx("enemyHurtSfx", $enemyHurtSfx)
 	Singleton.connect("boss_defeated", _on_boss_defeated)
 	Singleton.connect("boss_spawned", _on_boss_spawned)
 	if testBoss != null:

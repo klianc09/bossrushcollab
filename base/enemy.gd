@@ -25,8 +25,12 @@ var hp : float = 1
 ## As long as this is set to true, this enemy cannot take damage. Use for temporary invincibility e.g. during phase transitions. (multiparts will also not redirect damage while this is active)
 @export var invincible : bool = false
 
+var enemyHurtSfx = "enemyHurtSfx"
+
 var flashDuration = 0.1
 var flashTimer = 0
+var flashColor = Color.WHITE * 3
+var regularColor = Color.WHITE
 
 func _ready() -> void:
 	hp = maxhp
@@ -37,7 +41,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	flashTimer -= delta
 	if flashTimer < 0:
-		modulate = Color.WHITE
+		modulate = regularColor
 	
 	if hp <= 0:
 		onHealthFullyLost()
@@ -54,7 +58,8 @@ func damage(amount: float) -> void:
 		Singleton.damageBoss(amount * damageMultiplier)
 	else:
 		hp -= amount * damageMultiplier
-	modulate = Color.WHITE * 3
+	Singleton.playSfx(enemyHurtSfx)
+	modulate = flashColor
 	flashTimer = flashDuration
 
 func onContactWithPlayer(player: Player) -> void:
