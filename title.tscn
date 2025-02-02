@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckwu0sxrhj20b"]
+[gd_scene load_steps=5 format=3 uid="uid://ckwu0sxrhj20b"]
 
 [ext_resource type="Script" path="res://title.gd" id="1_atash"]
 [ext_resource type="Texture2D" uid="uid://b04gmbmh1u5lp" path="res://base/title_screen.png" id="1_iflci"]
 [ext_resource type="Theme" uid="uid://curncucwwts4b" path="res://ui_theme.tres" id="2_p4p0u"]
+[ext_resource type="AudioStream" uid="uid://bf4d7354tj3jf" path="res://base/sfx/start.wav" id="4_3oybq"]
 
 [node name="Title" type="Control"]
 layout_mode = 3
@@ -47,6 +48,10 @@ theme = ExtResource("2_p4p0u")
 theme_override_font_sizes/font_size = 44
 text = "<<< click to start >>>"
 
+[node name="confirmSfx" type="AudioStreamPlayer" parent="TitleScreen"]
+stream = ExtResource("4_3oybq")
+bus = &"SFX"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 10
@@ -80,7 +85,7 @@ feat. guest Boss appearance
 Backgrounds by
   Rokonuxa
 
-Player Sprite by
+\"Temporary\" Player Sprite by
   gab
 
 named those layers

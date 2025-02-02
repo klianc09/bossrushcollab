@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dffgnnw8bc6lj"]
+[gd_scene load_steps=17 format=3 uid="uid://dffgnnw8bc6lj"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q4pyb"]
 [ext_resource type="Texture2D" uid="uid://cmwxb2o0xv1wj" path="res://player/gfx/test.png" id="2_8eqy0"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cybvigh1uo20a" path="res://base/sfx/hurt1.wav" id="4_havn0"]
 [ext_resource type="Texture2D" uid="uid://bbxrjb245yfra" path="res://player/gfx/reticle_charge.png" id="4_ujmnu"]
 [ext_resource type="AudioStream" uid="uid://dm6hwq2ei31h0" path="res://base/sfx/lose1.wav" id="5_oqq4o"]
+[ext_resource type="AudioStream" uid="uid://iro4et2ypny3" path="res://base/sfx/heal.wav" id="6_dln63"]
 [ext_resource type="AudioStream" uid="uid://6ao32yegqcdh" path="res://base/sfx/zap1.wav" id="6_xdxpo"]
 [ext_resource type="AudioStream" uid="uid://bw1mchjytxhjp" path="res://base/sfx/zap2.wav" id="7_rem7a"]
 [ext_resource type="AudioStream" uid="uid://smat2apl2q8a" path="res://base/sfx/click.wav" id="9_08ewx"]
@@ -17,6 +18,11 @@ radius = 13.0
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("4_havn0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jlc1p"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_dln63")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sf6k4"]
 random_pitch = 2.0
@@ -68,6 +74,11 @@ texture = ExtResource("4_ujmnu")
 
 [node name="hurtSfx" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_l5x5o")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="healSfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jlc1p")
 volume_db = 5.0
 bus = &"SFX"
 

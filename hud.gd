@@ -1,6 +1,6 @@
 extends Control
 
-var hp_highlight_color = Color.WHITE
+var hp_highlight_color = Color.BLACK
 var hit_duration = 0.5
 var hit_delay = 0.0
 
@@ -12,12 +12,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	hit_delay -= delta
-	# hp_highlight_color = hp_highlight_color.lerp(Color.WHITE, 0.05)
+	hp_highlight_color = hp_highlight_color.lerp(Color.BLACK, 0.05)
 	if hit_delay < 0:
 		$BossHealthBar1.value = $BossHealthBar2.value
-	# $BossHealthBar.tint_progress = hp_highlight_color
+	$BossHealthBar1.tint_progress = hp_highlight_color
 
 func _on_boss_spawned(boss: Enemy):
+	$Instructions.visible = false
 	var labelypos = 18
 	$TopStrip.visible = true
 	$TopStrip.scale = Vector2(1, 0)
@@ -52,6 +53,7 @@ func endOfSpawnSequence():
 
 
 func _on_boss_defeated():
+	$SuccessLabel.text = "You defeated:\n" + Singleton.bossNode.boss_name + "!"
 	$SuccessLabel.visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_callback(endOfDefeatSequence).set_delay(1)
@@ -61,8 +63,23 @@ func endOfDefeatSequence():
 
 
 func _on_great_success():
+	var player : Player = $"../../player"
 	$UltimateSuccessLabel.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($TheLight, "modulate", Color.WHITE, 4)
+	tween.parallel().tween_method(set_sfx_volume, 0, -70, 4)
+	var anchor = $UltimateSuccessLabel.position
+	$UltimateSuccessLabel.position = Vector2(anchor.x, Singleton.viewportSize.y)
+	tween.tween_property($UltimateSuccessLabel, "position", anchor, 20)
+	tween.tween_callback(showFinalScore)
+	$FinalScore.text = "Time: " + str(int(player.totalTime)) + "s \n Hits: " + str(player.hitsTaken)
 
+func showFinalScore():
+	$FinalScore.visible = true
+
+func set_sfx_volume(volume_db):
+	var sfx_bus = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(sfx_bus, volume_db)
 
 func _on_boss_hp_changed(newHp: int) -> void:
 	$BossHealthBar1.max_value = Singleton.bossNode.maxhp

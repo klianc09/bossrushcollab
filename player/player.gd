@@ -40,6 +40,9 @@ var dead = false
 var missileChargeReticles1 = []
 var missileChargeReticles2 = []
 
+var hitsTaken = 0
+var totalTime = 0.0
+
 ## All outgoing damage is multiplied by this. Mostly useful for testing.
 @export var damageMultiplier = 1
 
@@ -63,12 +66,14 @@ func _ready() -> void:
 		$Reticle/r2.add_child(r2)
 	$Reticle/r1/indicator.visible = false
 	$Reticle/r2/indicator.visible = false
+	Singleton.boss_defeated.connect(healAfterCombat)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_reset"):
 		Singleton.resetScene()
 	if dead:
 		return
+	totalTime += delta
 	var input_x = Input.get_axis("ui_left", "ui_right")
 	var input_y = Input.get_axis("ui_up", "ui_down")
 	var input_vector = Vector2(input_x, input_y).normalized()
@@ -176,6 +181,7 @@ func damage(damageAmount: int) -> void:
 	health -= damageAmount
 	invulnerabilityTimer = invulnerabilityDuration
 	$hurtSfx.play()
+	hitsTaken += 1
 	if health <= 0:
 		$deathSfx.play()
 		dead = true
@@ -183,6 +189,13 @@ func damage(damageAmount: int) -> void:
 		var expl = Singleton.createParticle("res://player/explosion.tscn")
 		expl.position = position
 	health_change.emit(self)
+
+func healAfterCombat():
+	health += 1
+	health = min(maxHealth, health)
+	$healSfx.play()
+	health_change.emit(self)
+
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Enemy:

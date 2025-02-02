@@ -478,30 +478,29 @@ offset_bottom = 492.0
 [node name="SuccessLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
 layout_mode = 0
-offset_left = 517.0
-offset_top = 468.0
-offset_right = 699.0
-offset_bottom = 491.0
-text = "You defeated the BOSS!"
+offset_left = 124.0
+offset_top = 59.0
+offset_right = 830.0
+offset_bottom = 122.0
+theme = ExtResource("96_gh3iu")
+text = "You defeated
+BOSS!"
+horizontal_alignment = 1
 
 [node name="DeathLabel" type="Label" parent="CanvasLayer/hud"]
 visible = false
 layout_mode = 0
-offset_left = 157.0
-offset_top = 287.0
-offset_right = 339.0
-offset_bottom = 336.0
+offset_left = 76.0
+offset_top = 195.0
+offset_right = 448.0
+offset_bottom = 356.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 37
 text = "You were defeated!
-Better luck next time"
+Better luck next time!
 
-[node name="UltimateSuccessLabel" type="Label" parent="CanvasLayer/hud"]
-visible = false
-layout_mode = 0
-offset_left = 411.0
-offset_top = 420.0
-offset_right = 682.0
-offset_bottom = 443.0
-text = "You defeated ALL bosses, good job!"
+Press R to restart"
+horizontal_alignment = 1
 
 [node name="TopStrip" type="TextureRect" parent="CanvasLayer/hud"]
 visible = false
@@ -546,6 +545,81 @@ offset_bottom = 56.0
 theme = ExtResource("96_gh3iu")
 theme_override_font_sizes/font_size = 37
 text = "Boss Approaching: "
+
+[node name="Instructions" type="Control" parent="CanvasLayer/hud"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/hud/Instructions"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 101.0
+offset_right = 510.0
+offset_bottom = 139.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 37
+text = "USE WASD/ARROWS TO MOVE"
+
+[node name="Label2" type="Label" parent="CanvasLayer/hud/Instructions"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 437.0
+offset_right = 612.0
+offset_bottom = 475.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 37
+text = "USE ANY OTHER BUTTON TO SHOOT"
+
+[node name="TheLight" type="ColorRect" parent="CanvasLayer/hud"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UltimateSuccessLabel" type="Label" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -939.0
+offset_right = 945.0
+offset_bottom = 282.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 64
+text = "As you slay the last beast.
+You breathe a sigh of relief.
+
+The path to the top is clear.
+Finally you will reach paradise.
+
+As you reach the gate.
+You realize...
+
+... you forgot your keys.
+
+
+
+
+
+Well done, proud of you!
+
+Thanks for playing."
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="CanvasLayer/hud"]
+visible = false
+layout_mode = 0
+offset_left = 95.0
+offset_top = 342.0
+offset_right = 851.0
+offset_bottom = 483.0
+theme = ExtResource("96_gh3iu")
+theme_override_font_sizes/font_size = 64
+text = "Your Time: 
+Hits Taken:"
 
 [node name="PauseMenu" type="ColorRect" parent="CanvasLayer"]
 visible = false

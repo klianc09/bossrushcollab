@@ -27,6 +27,8 @@ func resetPools() -> void:
 	particlePool = {}
 
 func resetScene():
+	var sfx_bus = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(sfx_bus, 0)
 	resetPools()
 	get_tree().change_scene_to_file("res://test.tscn")
 
